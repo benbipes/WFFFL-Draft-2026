@@ -899,7 +899,10 @@
     <!-- Sign-Ups -->
     <section id="groceries">
       <div class="card">
-        <div class="card-title">🛒 Open Needs & Sign-Up Sheet</div>
+        <div class="card-title">
+          <span>🛒 Open Needs & Sign-Up Sheet</span>
+          <button type="button" class="btn btn-primary" onclick="openAddItemModal()" style="font-size: 0.85rem; padding: 6px 14px; display: inline-flex; align-items: center; gap: 6px;">➕ Add Item / Need</button>
+        </div>
         <table>
           <thead>
             <tr>
@@ -909,7 +912,7 @@
               <th>Status</th>
             </tr>
           </thead>
-          <tbody>
+          <tbody id="defaultSignupBody">
             <tr>
               <td><strong>Taco Shells, Tortillas & Toppings</strong></td>
               <td>Food / Groceries</td>
@@ -947,13 +950,44 @@
               <td><span class="badge badge-needed claim-btn" data-slot-id="grocery-water-soda" data-slot-name="Bottled Water & Soft Drinks" data-default-label="Claim Slot">Claim Slot</span></td>
             </tr>
           </tbody>
+          <tbody id="customItemsBody"></tbody>
         </table>
       </div>
     </section>
 
   </main>
 
-  <!-- Sign-Up Modal -->
+  <!-- Add New Item Modal -->
+  <div id="addItemModal" class="modal-overlay" onclick="handleAddItemBackdropClick(event)">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h3>➕ Add Custom Item / Need</h3>
+        <button class="modal-close" onclick="closeAddItemModal()">&times;</button>
+      </div>
+      <div class="modal-body" style="display: flex; flex-direction: column; gap: 12px;">
+        <div>
+          <label for="newItemName" class="input-label">Item / Need <span style="color: var(--accent-red);">*</span></label>
+          <input type="text" id="newItemName" class="modal-input" placeholder="e.g. Extra Ice Cooler, Cigar Cutter, Diet Soda..." />
+        </div>
+        <div>
+          <label for="newItemCategory" class="input-label">Category <span style="color: var(--text-muted); font-weight: 400;">(Optional)</span></label>
+          <input type="text" id="newItemCategory" class="modal-input" placeholder="e.g. Supplies, Bar, Snacks, Games..." />
+        </div>
+        <div>
+          <label for="newItemTarget" class="input-label">Target Slot / Day <span style="color: var(--text-muted); font-weight: 400;">(Optional)</span></label>
+          <input type="text" id="newItemTarget" class="modal-input" placeholder="e.g. Friday Dinner, Saturday Morning, All Weekend..." />
+        </div>
+        <div>
+          <label for="newItemStatusName" class="input-label">Your Name (Status) <span style="color: var(--text-muted); font-weight: 400;">(Optional - leave blank if needed)</span></label>
+          <input type="text" id="newItemStatusName" class="modal-input" placeholder="e.g. Dover (or leave empty to let anyone claim)" />
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" onclick="closeAddItemModal()">Cancel</button>
+        <button type="button" class="btn btn-primary" onclick="submitNewCustomItem()">Save & Add Item</button>
+      </div>
+    </div>
+  </div>
   <div id="claimModal" class="modal-overlay" onclick="handleBackdropClick(event)">
     <div class="modal-card">
       <div class="modal-header">
@@ -1092,10 +1126,146 @@
     let activeSlotTitle = '';
 
     const STORAGE_KEY = 'wfffl_draft_claims_2026';
-    // Free Public Realtime Database endpoint for live multi-visitor sync
     const DB_ENDPOINT = 'https://wfffl-2026-draft-default-rtdb.firebaseio.com/claims.json';
 
+    const CUSTOM_ITEMS_STORAGE_KEY = 'wfffl_draft_custom_items_2026';
+    const CUSTOM_ITEMS_DB_ENDPOINT = 'https://wfffl-2026-draft-default-rtdb.firebaseio.com/custom_items.json';
+
     let currentClaims = {};
+    let customItems = {};
+
+    function escapeHtml(str) {
+      if (!str) return '';
+      return String(str).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+    }
+
+    function getLocalCustomItems() {
+      try {
+        return JSON.parse(localStorage.getItem(CUSTOM_ITEMS_STORAGE_KEY)) || {};
+      } catch (e) {
+        return {};
+      }
+    }
+
+    function saveLocalCustomItems(items) {
+      try {
+        localStorage.setItem(CUSTOM_ITEMS_STORAGE_KEY, JSON.stringify(items));
+      } catch (e) {}
+    }
+
+    async function fetchCloudCustomItems() {
+      try {
+        const res = await fetch(CUSTOM_ITEMS_DB_ENDPOINT);
+        if (res.ok) {
+          const data = await res.json();
+          if (data && typeof data === 'object') {
+            customItems = { ...getLocalCustomItems(), ...data };
+            saveLocalCustomItems(customItems);
+            renderCustomItems();
+            return;
+          }
+        }
+      } catch (e) {
+        console.log('Using local custom items store:', e);
+      }
+      customItems = getLocalCustomItems();
+      renderCustomItems();
+    }
+
+    function renderCustomItems() {
+      const tbody = document.getElementById('customItemsBody');
+      if (!tbody) return;
+
+      tbody.innerHTML = '';
+      Object.keys(customItems).forEach(id => {
+        const item = customItems[id];
+        if (!item) return;
+
+        const tr = document.createElement('tr');
+        
+        let statusBadge = '';
+        const claimedName = currentClaims[item.id] || item.claimedBy;
+        if (claimedName) {
+          statusBadge = `<span class="badge badge-ready claim-btn" data-slot-id="${item.id}" data-slot-name="${escapeHtml(item.name)}" data-default-label="Claim Slot">Claimed: ${escapeHtml(claimedName)}</span>`;
+        } else {
+          statusBadge = `<span class="badge badge-needed claim-btn" data-slot-id="${item.id}" data-slot-name="${escapeHtml(item.name)}" data-default-label="Claim Slot">Claim Slot</span>`;
+        }
+
+        tr.innerHTML = `
+          <td><strong>${escapeHtml(item.name)}</strong></td>
+          <td>${escapeHtml(item.category || '-')}</td>
+          <td>${escapeHtml(item.targetSlot || '-')}</td>
+          <td>${statusBadge}</td>
+        `;
+        tbody.appendChild(tr);
+      });
+
+      renderClaims();
+    }
+
+    function openAddItemModal() {
+      document.getElementById('addItemModal').classList.add('active');
+      setTimeout(() => document.getElementById('newItemName').focus(), 100);
+    }
+
+    function closeAddItemModal() {
+      document.getElementById('addItemModal').classList.remove('active');
+    }
+
+    function handleAddItemBackdropClick(e) {
+      if (e.target.classList.contains('modal-overlay')) {
+        closeAddItemModal();
+      }
+    }
+
+    async function submitNewCustomItem() {
+      const nameInput = document.getElementById('newItemName');
+      const name = nameInput.value.trim();
+      if (!name) {
+        alert('Please enter an Item / Need name.');
+        return;
+      }
+
+      const category = document.getElementById('newItemCategory').value.trim() || 'General';
+      const targetSlot = document.getElementById('newItemTarget').value.trim() || 'All Weekend';
+      const statusName = document.getElementById('newItemStatusName').value.trim();
+
+      const itemId = 'custom_' + Date.now();
+      const newItem = {
+        id: itemId,
+        name: name,
+        category: category,
+        targetSlot: targetSlot,
+        claimedBy: statusName || null
+      };
+
+      if (statusName) {
+        currentClaims[itemId] = statusName;
+        saveLocalClaims(currentClaims);
+        syncCloudClaim(itemId, statusName);
+      }
+
+      customItems[itemId] = newItem;
+      saveLocalCustomItems(customItems);
+      renderCustomItems();
+
+      // Sync custom item to cloud
+      try {
+        await fetch(`https://wfffl-2026-draft-default-rtdb.firebaseio.com/custom_items/${itemId}.json`, {
+          method: 'PUT',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(newItem)
+        });
+      } catch (e) {
+        console.warn('Error syncing custom item:', e);
+      }
+
+      nameInput.value = '';
+      document.getElementById('newItemCategory').value = '';
+      document.getElementById('newItemTarget').value = '';
+      document.getElementById('newItemStatusName').value = '';
+      closeAddItemModal();
+    }
 
     function getLocalClaims() {
       try {
@@ -1259,6 +1429,7 @@
       currentClaims = getLocalClaims();
       renderClaims();
       fetchCloudClaims();
+      fetchCloudCustomItems();
     });
   </script>
 
