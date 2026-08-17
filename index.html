@@ -48,6 +48,19 @@
       overflow: hidden;
     }
 
+    .header-logo {
+      max-width: 170px;
+      height: auto;
+      margin: 0 auto 16px;
+      display: block;
+      filter: drop-shadow(0 6px 20px rgba(0, 0, 0, 0.5));
+      transition: transform 0.3s ease;
+    }
+
+    .header-logo:hover {
+      transform: scale(1.05);
+    }
+
     header::before {
       content: "";
       position: absolute;
@@ -550,6 +563,7 @@
 
   <header>
     <div class="container">
+      <img src="wfffl-logo-white.png" alt="Wolfpack Fans Fantasy Football League Logo" class="header-logo" />
       <span class="badge-year">Season 26 • Asheville, NC</span>
       <h1>Fantasy Football Draft Weekend</h1>
       <div class="header-sub">
