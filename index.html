@@ -253,6 +253,31 @@
 
     .claim-btn:hover {
       transform: translateY(-1px) scale(1.04);
+    }
+
+    .btn-trash {
+      background: rgba(239, 68, 68, 0.1);
+      color: #f87171;
+      border: 1px solid rgba(239, 68, 68, 0.25);
+      border-radius: 6px;
+      padding: 4px 8px;
+      font-size: 0.85rem;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .btn-trash:hover {
+      background: rgba(239, 68, 68, 0.25);
+      color: #ffffff;
+      border-color: #ef4444;
+      transform: scale(1.1);
+      box-shadow: 0 2px 8px rgba(239, 68, 68, 0.3);
+    }
+
+    .claim-btn:hover {
       filter: brightness(1.2);
       box-shadow: 0 4px 12px rgba(239, 68, 68, 0.25);
     }
@@ -953,6 +978,7 @@
               <th>Category</th>
               <th>Target Slot</th>
               <th>Status</th>
+              <th style="width: 44px; text-align: center;"></th>
             </tr>
           </thead>
           <tbody id="defaultSignupBody">
@@ -961,36 +987,42 @@
               <td>Food / Groceries</td>
               <td>Friday Dinner</td>
               <td><span class="badge badge-needed claim-btn" data-slot-id="grocery-taco-shells" data-slot-name="Taco Shells, Tortillas & Toppings" data-default-label="Claim Slot">Claim Slot</span></td>
+              <td style="width: 44px;"></td>
             </tr>
             <tr>
               <td><strong>Vodka & Bloody Mary Garnishes</strong></td>
               <td>Bar / Breakfast</td>
               <td>Saturday Morning</td>
               <td><span class="badge badge-needed claim-btn" data-slot-id="grocery-vodka-garnishes" data-slot-name="Vodka & Bloody Mary Garnishes" data-default-label="Claim Slot">Claim Slot</span></td>
+              <td style="width: 44px;"></td>
             </tr>
             <tr>
               <td><strong>Bulk Craft Beer & Seltzers</strong></td>
               <td>Beverages</td>
               <td>All Weekend</td>
               <td><span class="badge badge-needed claim-btn" data-slot-id="grocery-craft-beer" data-slot-name="Bulk Craft Beer & Seltzers" data-default-label="Claim Slot">Claim Slot</span></td>
+              <td style="width: 44px;"></td>
             </tr>
             <tr>
               <td><strong>Game Day Chips, Pretzels & Dips</strong></td>
               <td>Snacks</td>
               <td>Draft & NC State Watch</td>
               <td><span class="badge badge-needed claim-btn" data-slot-id="grocery-chips-dips" data-slot-name="Game Day Chips, Pretzels & Dips" data-default-label="Claim Slot">Claim Slot</span></td>
+              <td style="width: 44px;"></td>
             </tr>
             <tr>
               <td><strong>Paper Plates, Napkins, Cutlery, Cups</strong></td>
               <td>Supplies</td>
               <td>Cabin Essentials</td>
               <td><span class="badge badge-needed claim-btn" data-slot-id="grocery-paper-goods" data-slot-name="Paper Plates, Napkins, Cutlery & Cups" data-default-label="Claim Slot">Claim Slot</span></td>
+              <td style="width: 44px;"></td>
             </tr>
             <tr>
               <td><strong>Bottled Water & Soft Drinks</strong></td>
               <td>Hydration</td>
               <td>All Weekend</td>
               <td><span class="badge badge-needed claim-btn" data-slot-id="grocery-water-soda" data-slot-name="Bottled Water & Soft Drinks" data-default-label="Claim Slot">Claim Slot</span></td>
+              <td style="width: 44px;"></td>
             </tr>
           </tbody>
           <tbody id="customItemsBody"></tbody>
@@ -1294,11 +1326,29 @@
           <td>${escapeHtml(item.category || '-')}</td>
           <td>${escapeHtml(item.targetSlot || '-')}</td>
           <td>${statusBadge}</td>
+          <td style="text-align: center; vertical-align: middle;">
+            <button type="button" class="btn-trash" onclick="deleteCustomItem('${item.id}', '${escapeHtml(item.name).replace(/'/g, "\\'")}')" title="Delete item">🗑️</button>
+          </td>
         `;
         tbody.appendChild(tr);
       });
 
       renderClaims();
+    }
+
+    async function deleteCustomItem(itemId, itemName) {
+      const verified = confirm(`Are you sure you want to remove "${itemName}" from the sign-up sheet?`);
+      if (!verified) return;
+
+      delete customItems[itemId];
+      if (currentClaims[itemId]) {
+        delete currentClaims[itemId];
+        saveLocalClaims(currentClaims);
+      }
+      saveLocalCustomItems(customItems);
+
+      renderCustomItems();
+      await pushCloudStore();
     }
 
     function openAddItemModal() {
