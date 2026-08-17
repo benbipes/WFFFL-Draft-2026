@@ -248,6 +248,29 @@
       box-shadow: 0 4px 12px rgba(34, 197, 94, 0.25);
     }
 
+    .btn-spirit-info {
+      background: rgba(168, 85, 247, 0.15);
+      color: #c084fc;
+      border: 1px solid rgba(168, 85, 247, 0.35);
+      padding: 6px 12px;
+      border-radius: 8px;
+      font-size: 0.78rem;
+      font-weight: 700;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.2s ease;
+      white-space: nowrap;
+    }
+
+    .btn-spirit-info:hover {
+      background: rgba(168, 85, 247, 0.3);
+      color: #fff;
+      transform: translateY(-1px);
+      box-shadow: 0 4px 12px rgba(168, 85, 247, 0.3);
+    }
+
     /* Modal Overlay & Card */
     .modal-overlay {
       position: fixed;
@@ -530,9 +553,7 @@
       <span class="badge-year">Season 26 • Asheville, NC</span>
       <h1>Fantasy Football Draft Weekend</h1>
       <div class="header-sub">
-        <span>📅 August 27 – 30, 2026</span>
-        <span>🎯 3-Board Dart Tournament</span>
-        <span>🏈 NC State vs Game Watch</span>
+        <span><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: text-bottom; margin-right: 4px; display: inline-block;"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg> August 27 – 30, 2026</span>
       </div>
     </div>
   </header>
@@ -577,18 +598,7 @@
           </div>
         </div>
 
-        <div style="margin-top: 20px;">
-          <div class="info-label">🎨 League Roles & Color Key</div>
-          <div class="legend-wrap">
-            <span class="badge badge-ben">Dover (BBQ, French Dips, Mix)</span>
-            <span class="badge badge-john">John (Fri Breakfast & Street Corn)</span>
-            <span class="badge badge-blaine">Blaine (Fri Carnitas)</span>
-            <span class="badge badge-matt">Matt (Mezcal & Bourbon Lineup)</span>
-            <span class="badge badge-paul-graham">Paul & Graham (Sat BoJangles)</span>
-            <span class="badge badge-bobby">Bobby (Dart Setup #3)</span>
-            <span class="badge badge-all">All League</span>
-          </div>
-        </div>
+
       </div>
     </section>
 
@@ -770,56 +780,56 @@
               <h4>George T. Stagg</h4>
               <p>Buffalo Trace Antique Collection (BTAC) • Barrel Proof</p>
             </div>
-            <span class="badge badge-ready">Thu Bourbon</span>
+            <button type="button" class="btn-spirit-info" onclick="openSpiritModal(0)">More Info ℹ️</button>
           </div>
           <div class="spirit-item">
             <div class="spirit-details">
               <h4>Russell's Reserve 13 Year</h4>
               <p>13-Yr Age Stated • Barrel Proof • Non-Chill Filtered</p>
             </div>
-            <span class="badge badge-ready">Thu Bourbon</span>
+            <button type="button" class="btn-spirit-info" onclick="openSpiritModal(1)">More Info ℹ️</button>
           </div>
           <div class="spirit-item">
             <div class="spirit-details">
               <h4>Colonel E.H. Taylor, Jr.</h4>
               <p>Straight Kentucky Bourbon • Barrel Proof Uncut</p>
             </div>
-            <span class="badge badge-ready">Thu Bourbon</span>
+            <button type="button" class="btn-spirit-info" onclick="openSpiritModal(2)">More Info ℹ️</button>
           </div>
           <div class="spirit-item">
             <div class="spirit-details">
               <h4>Old Forester 1924</h4>
               <p>10-Year Old • 100 Proof • Whiskey Row 5th Release</p>
             </div>
-            <span class="badge badge-ready">Thu Bourbon</span>
+            <button type="button" class="btn-spirit-info" onclick="openSpiritModal(3)">More Info ℹ️</button>
           </div>
           <div class="spirit-item">
             <div class="spirit-details">
               <h4>Elijah Craig 15 Year Single Barrel</h4>
               <p>15-Year Age Stated Red Label Single Barrel</p>
             </div>
-            <span class="badge badge-ready">Thu Bourbon</span>
+            <button type="button" class="btn-spirit-info" onclick="openSpiritModal(4)">More Info ℹ️</button>
           </div>
           <div class="spirit-item">
             <div class="spirit-details">
               <h4>Willett Family Estate Single Barrel</h4>
               <p>Purple Foil Cask Selection Single Barrel</p>
             </div>
-            <span class="badge badge-ready">Thu Bourbon</span>
+            <button type="button" class="btn-spirit-info" onclick="openSpiritModal(5)">More Info ℹ️</button>
           </div>
           <div class="spirit-item">
             <div class="spirit-details">
               <h4>Nashtucky 8 Year Single Barrel</h4>
               <p>Nashville Barrel Co. • 8-Year Cask Strength</p>
             </div>
-            <span class="badge badge-ready">Thu Bourbon</span>
+            <button type="button" class="btn-spirit-info" onclick="openSpiritModal(6)">More Info ℹ️</button>
           </div>
           <div class="spirit-item">
             <div class="spirit-details">
               <h4>Macurichos, Gusto Histórico, Real Minero</h4>
               <p>Artisanal Agave / Oaxacan Mezcal Flight</p>
             </div>
-            <span class="badge badge-ready">Fri Mezcal</span>
+            <button type="button" class="btn-spirit-info" onclick="openSpiritModal(7)">More Info ℹ️</button>
           </div>
         </div>
       </div>
@@ -876,10 +886,10 @@
               <td><span id="status-gear-draft-tech" class="badge badge-needed">Needed</span></td>
             </tr>
             <tr>
-              <td><strong>Outdoor Audio</strong></td>
-              <td>Waterproof Bluetooth Speaker</td>
-              <td><span class="badge badge-needed claim-btn" data-slot-id="gear-audio" data-slot-name="Outdoor Audio (Bluetooth Speaker)" data-default-label="Sign Up">Sign Up</span></td>
-              <td><span id="status-gear-audio" class="badge badge-needed">Needed</span></td>
+              <td><strong>Audio & Sound</strong></td>
+              <td>Sonos Speakers & Sound System</td>
+              <td><span class="badge badge-ben">Dover</span></td>
+              <td><span class="badge badge-ready">Confirmed</span></td>
             </tr>
           </tbody>
         </table>
@@ -967,7 +977,117 @@
     </div>
   </div>
 
+  <!-- Spirit Info Modal -->
+  <div id="spiritModal" class="modal-overlay" onclick="handleSpiritBackdropClick(event)">
+    <div class="modal-card" style="max-width: 520px;">
+      <div class="modal-header">
+        <div>
+          <span id="spiritCategoryBadge" class="badge badge-matt" style="margin-bottom: 6px; display: inline-block;"></span>
+          <h3 id="spiritTitle" style="font-size: 1.8rem;"></h3>
+        </div>
+        <button class="modal-close" onclick="closeSpiritModal()">&times;</button>
+      </div>
+      <div class="modal-body" style="display: flex; flex-direction: column; gap: 12px;">
+        <div class="info-box">
+          <div class="info-label">⚡ Proof / ABV & Age</div>
+          <div id="spiritProof" class="info-val" style="color: var(--accent-gold); font-size: 0.95rem;"></div>
+        </div>
+        <div class="info-box">
+          <div class="info-label">👅 Tasting Notes</div>
+          <div id="spiritNotes" style="font-size: 0.9rem; color: #f1f5f9; line-height: 1.5; margin-top: 4px;"></div>
+        </div>
+        <div class="info-box">
+          <div class="info-label">🌟 Bottle Background & Details</div>
+          <div id="spiritDetails" style="font-size: 0.86rem; color: var(--text-muted); line-height: 1.5; margin-top: 4px;"></div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" style="margin-left: auto;" onclick="closeSpiritModal()">Close</button>
+      </div>
+    </div>
+  </div>
+
   <script>
+    const SPIRIT_DATA = [
+      {
+        name: "George T. Stagg",
+        category: "Thursday Night Bourbon",
+        proof: "Uncut & Unfiltered Barrel Proof (~130+ Proof) • 15+ Yrs",
+        notes: "Dark chocolate, espresso, rich molasses, charred oak, leather, and intense maraschino cherry spice with a warm, endless finish.",
+        details: "Part of the legendary Buffalo Trace Antique Collection (BTAC). Released once a year in minute quantities, George T. Stagg is one of the most acclaimed barrel-proof bourbons in existence."
+      },
+      {
+        name: "Russell's Reserve 13 Year",
+        category: "Thursday Night Bourbon",
+        proof: "114.8 Proof (57.4% ABV) • 13-Year Age Stated",
+        notes: "Deep caramel, ripe dark berries, toasted vanilla bean, warm cinnamon stick spice, and antique oak complexity.",
+        details: "Master Distiller Eddie Russell's flagship age-stated barrel-proof masterpiece from Wild Turkey Distillery, celebrating over 40 years of family distillation history."
+      },
+      {
+        name: "Colonel E.H. Taylor, Jr. Barrel Proof",
+        category: "Thursday Night Bourbon",
+        proof: "Uncut Barrel Proof (~125-130 Proof) • Non-Chill Filtered",
+        notes: "Butterscotch, toasted pecans, cooked dark orchard fruit, rye spice, and a rich, velvety oak finish.",
+        details: "Named after Colonel E.H. Taylor, Jr., key founding father of the modern whiskey industry and chief advocate of the historic Bottled-in-Bond Act of 1897."
+      },
+      {
+        name: "Old Forester 1924",
+        category: "Thursday Night Bourbon",
+        proof: "100 Proof (50% ABV) • 10-Year Age Stated",
+        notes: "Dark chocolate-covered Graham crackers, cinnamon stick, marzipan, baking spice, and roasted pecan.",
+        details: "5th release in Old Forester's Whiskey Row Series. Features a unique 10-year age-stated mash bill (79% Corn, 11% Rye, 10% Malted Barley) honoring their Prohibition medicinal whiskey history."
+      },
+      {
+        name: "Elijah Craig 15 Year Single Barrel",
+        category: "Thursday Night Bourbon",
+        proof: "90 Proof (45% ABV) • 15-Year Vintage Single Barrel",
+        notes: "Rich oak wood, dark caramel, nutmeg, old leather, honeyed pears, and subtle dark cocoa.",
+        details: "Rare vintage Red Label Single Barrel from Heaven Hill Distillery. Predates modern releases, revered for its deep 15-year barrel aging and quintessential Heaven Hill profile."
+      },
+      {
+        name: "Willett Family Estate Single Barrel",
+        category: "Thursday Night Bourbon",
+        proof: "Barrel Proof Cask Strength • Purple Foil Capsule Single Barrel",
+        notes: "Fresh cinnamon rolls, brown sugar, mint tea, dried fig, leather, and Willett's iconic herbal spice notes.",
+        details: "Willett's Purple Foil Single Barrel releases represent hand-selected cask-strength barrels aged in historic Bardstown rickhouses."
+      },
+      {
+        name: "Nashtucky 8 Year Single Barrel",
+        category: "Thursday Night Bourbon",
+        proof: "Cask Strength (~118-124 Proof) • 8-Year Single Barrel",
+        notes: "Honeycomb, toasted almonds, vanilla bean, charred oak, and bold cracked black pepper.",
+        details: "Bottled at cask strength by Nashville Barrel Company. Hand-picked single barrels offering robust, uncut high-proof character."
+      },
+      {
+        name: "Macurichos, Gusto Histórico, Real Minero Flight",
+        category: "Friday Night Mezcal Flight",
+        proof: "45% – 52% ABV • Artisanal Wild Agave",
+        notes: "Earthy woodsmoke, tropical citrus peel, herbal agave nectar, wet stone minerality, and subtle floral warmth.",
+        details: "Distilled in traditional clay pots and copper stills by master mezcaleros in Santa Catarina Minas and Miahuatlán, Oaxaca using wild Tobalá, Espadín, and Arroqueño agave."
+      }
+    ];
+
+    function openSpiritModal(index) {
+      const spirit = SPIRIT_DATA[index];
+      if (!spirit) return;
+      document.getElementById('spiritCategoryBadge').textContent = spirit.category;
+      document.getElementById('spiritTitle').textContent = spirit.name;
+      document.getElementById('spiritProof').textContent = spirit.proof;
+      document.getElementById('spiritNotes').textContent = spirit.notes;
+      document.getElementById('spiritDetails').textContent = spirit.details;
+      document.getElementById('spiritModal').classList.add('active');
+    }
+
+    function closeSpiritModal() {
+      document.getElementById('spiritModal').classList.remove('active');
+    }
+
+    function handleSpiritBackdropClick(e) {
+      if (e.target.classList.contains('modal-overlay')) {
+        closeSpiritModal();
+      }
+    }
+
     let activeSlotId = null;
     let activeSlotTitle = '';
 
