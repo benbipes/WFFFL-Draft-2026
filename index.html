@@ -901,7 +901,36 @@
       <div class="card">
         <div class="card-title">
           <span>🛒 Open Needs & Sign-Up Sheet</span>
-          <button type="button" class="btn btn-primary" onclick="openAddItemModal()" style="font-size: 0.85rem; padding: 6px 14px; display: inline-flex; align-items: center; gap: 6px;">➕ Add Item / Need</button>
+        </div>
+
+        <!-- Visible Inline Form to Add Items -->
+        <div style="margin-bottom: 24px; padding: 18px; background: #0f172a; border: 1px solid #1e293b; border-radius: 12px;">
+          <div style="font-size: 0.85rem; font-weight: 700; color: var(--accent-gold); text-transform: uppercase; letter-spacing: 0.8px; margin-bottom: 12px; display: flex; align-items: center; gap: 6px;">
+            <span>➕ Add a New Item / Need to the Sign-Up Sheet</span>
+          </div>
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 12px; align-items: end;">
+            <div>
+              <label for="inlineItemName" class="input-label">Item / Need <span style="color: var(--accent-red);">*</span></label>
+              <input type="text" id="inlineItemName" class="modal-input" placeholder="e.g. Board Games, Extra Ice..." />
+            </div>
+            <div>
+              <label for="inlineItemCategory" class="input-label">Category <span style="color: var(--text-muted); font-weight: 400;">(Optional)</span></label>
+              <input type="text" id="inlineItemCategory" class="modal-input" placeholder="e.g. Supplies, Bar, Snacks..." />
+            </div>
+            <div>
+              <label for="inlineItemTarget" class="input-label">Target Slot <span style="color: var(--text-muted); font-weight: 400;">(Optional)</span></label>
+              <input type="text" id="inlineItemTarget" class="modal-input" placeholder="e.g. Friday Dinner, Draft..." />
+            </div>
+            <div>
+              <label for="inlineItemStatusName" class="input-label">Your Name <span style="color: var(--text-muted); font-weight: 400;">(Status)</span></label>
+              <input type="text" id="inlineItemStatusName" class="modal-input" placeholder="e.g. Dover (or leave empty)" />
+            </div>
+            <div>
+              <button type="button" class="btn btn-primary" onclick="submitInlineCustomItem()" style="width: 100%; height: 42px; display: inline-flex; align-items: center; justify-content: center; gap: 6px; font-weight: 700;">
+                Add Item ➕
+              </button>
+            </div>
+          </div>
         </div>
         <table>
           <thead>
@@ -1265,6 +1294,54 @@
       document.getElementById('newItemTarget').value = '';
       document.getElementById('newItemStatusName').value = '';
       closeAddItemModal();
+    }
+
+    async function submitInlineCustomItem() {
+      const nameInput = document.getElementById('inlineItemName');
+      const name = nameInput.value.trim();
+      if (!name) {
+        alert('Please enter an Item / Need name.');
+        return;
+      }
+
+      const category = document.getElementById('inlineItemCategory').value.trim() || 'General';
+      const targetSlot = document.getElementById('inlineItemTarget').value.trim() || 'All Weekend';
+      const statusName = document.getElementById('inlineItemStatusName').value.trim();
+
+      const itemId = 'custom_' + Date.now();
+      const newItem = {
+        id: itemId,
+        name: name,
+        category: category,
+        targetSlot: targetSlot,
+        claimedBy: statusName || null
+      };
+
+      if (statusName) {
+        currentClaims[itemId] = statusName;
+        saveLocalClaims(currentClaims);
+        syncCloudClaim(itemId, statusName);
+      }
+
+      customItems[itemId] = newItem;
+      saveLocalCustomItems(customItems);
+      renderCustomItems();
+
+      // Sync custom item to cloud DB
+      try {
+        await fetch(`https://wfffl-2026-draft-default-rtdb.firebaseio.com/custom_items/${itemId}.json`, {
+          method: 'PUT',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(newItem)
+        });
+      } catch (e) {
+        console.warn('Error syncing custom item:', e);
+      }
+
+      nameInput.value = '';
+      document.getElementById('inlineItemCategory').value = '';
+      document.getElementById('inlineItemTarget').value = '';
+      document.getElementById('inlineItemStatusName').value = '';
     }
 
     function getLocalClaims() {
