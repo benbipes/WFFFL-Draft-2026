@@ -1206,18 +1206,38 @@
 
     async function fetchCloudStore() {
       try {
-        const res = await fetch(CLOUD_SYNC_URL);
+        const res = await fetch(CLOUD_SYNC_URL + '?nocache=' + Date.now());
         if (res.ok) {
           const resData = await res.json();
           if (resData && resData.data) {
-            if (resData.data.claims) {
-              currentClaims = { ...getLocalClaims(), ...resData.data.claims };
-              saveLocalClaims(currentClaims);
+            const cloudClaims = resData.data.claims || {};
+            const cloudItems = resData.data.customItems || {};
+            const localClaims = getLocalClaims();
+            const localItems = getLocalCustomItems();
+
+            let needsPush = false;
+            Object.keys(localClaims).forEach(k => {
+              if (localClaims[k] && !cloudClaims[k]) {
+                cloudClaims[k] = localClaims[k];
+                needsPush = true;
+              }
+            });
+            Object.keys(localItems).forEach(k => {
+              if (localItems[k] && !cloudItems[k]) {
+                cloudItems[k] = localItems[k];
+                needsPush = true;
+              }
+            });
+
+            currentClaims = { ...cloudClaims };
+            customItems = { ...cloudItems };
+            saveLocalClaims(currentClaims);
+            saveLocalCustomItems(customItems);
+
+            if (needsPush) {
+              pushCloudStore();
             }
-            if (resData.data.customItems) {
-              customItems = { ...getLocalCustomItems(), ...resData.data.customItems };
-              saveLocalCustomItems(customItems);
-            }
+
             renderClaims();
             renderCustomItems();
             return;
@@ -1485,6 +1505,7 @@
       renderClaims();
       renderCustomItems();
       fetchCloudStore();
+      setInterval(fetchCloudStore, 4000);
     });
   </script>
 
