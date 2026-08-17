@@ -1168,11 +1168,9 @@
     let activeSlotId = null;
     let activeSlotTitle = '';
 
-    const STORAGE_KEY = 'wfffl_draft_claims_2026';
-    const DB_ENDPOINT = 'https://wfffl-2026-draft-default-rtdb.firebaseio.com/claims.json';
-
-    const CUSTOM_ITEMS_STORAGE_KEY = 'wfffl_draft_custom_items_2026';
-    const CUSTOM_ITEMS_DB_ENDPOINT = 'https://wfffl-2026-draft-default-rtdb.firebaseio.com/custom_items.json';
+    const CLOUD_SYNC_URL = 'https://api.restful-api.dev/objects/ff8081819ff5b11001a0104f3b0238db';
+    const LOCAL_CLAIMS_KEY = 'wfffl_draft_claims_2026';
+    const LOCAL_CUSTOM_KEY = 'wfffl_draft_custom_items_2026';
 
     let currentClaims = {};
     let customItems = {};
@@ -1182,37 +1180,74 @@
       return String(str).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
     }
 
+    function getLocalClaims() {
+      try {
+        return JSON.parse(localStorage.getItem(LOCAL_CLAIMS_KEY)) || {};
+      } catch (e) { return {}; }
+    }
+
+    function saveLocalClaims(claims) {
+      try {
+        localStorage.setItem(LOCAL_CLAIMS_KEY, JSON.stringify(claims));
+      } catch (e) {}
+    }
+
     function getLocalCustomItems() {
       try {
-        return JSON.parse(localStorage.getItem(CUSTOM_ITEMS_STORAGE_KEY)) || {};
-      } catch (e) {
-        return {};
-      }
+        return JSON.parse(localStorage.getItem(LOCAL_CUSTOM_KEY)) || {};
+      } catch (e) { return {}; }
     }
 
     function saveLocalCustomItems(items) {
       try {
-        localStorage.setItem(CUSTOM_ITEMS_STORAGE_KEY, JSON.stringify(items));
+        localStorage.setItem(LOCAL_CUSTOM_KEY, JSON.stringify(items));
       } catch (e) {}
     }
 
-    async function fetchCloudCustomItems() {
+    async function fetchCloudStore() {
       try {
-        const res = await fetch(CUSTOM_ITEMS_DB_ENDPOINT);
+        const res = await fetch(CLOUD_SYNC_URL);
         if (res.ok) {
-          const data = await res.json();
-          if (data && typeof data === 'object') {
-            customItems = { ...getLocalCustomItems(), ...data };
-            saveLocalCustomItems(customItems);
+          const resData = await res.json();
+          if (resData && resData.data) {
+            if (resData.data.claims) {
+              currentClaims = { ...getLocalClaims(), ...resData.data.claims };
+              saveLocalClaims(currentClaims);
+            }
+            if (resData.data.customItems) {
+              customItems = { ...getLocalCustomItems(), ...resData.data.customItems };
+              saveLocalCustomItems(customItems);
+            }
+            renderClaims();
             renderCustomItems();
             return;
           }
         }
       } catch (e) {
-        console.log('Using local custom items store:', e);
+        console.warn('Cloud store fallback:', e);
       }
+      currentClaims = getLocalClaims();
       customItems = getLocalCustomItems();
+      renderClaims();
       renderCustomItems();
+    }
+
+    async function pushCloudStore() {
+      try {
+        await fetch(CLOUD_SYNC_URL, {
+          method: 'PUT',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            name: 'WFFFL 2026 Claims & Items',
+            data: {
+              claims: currentClaims,
+              customItems: customItems
+            }
+          })
+        });
+      } catch (e) {
+        console.warn('Cloud sync error:', e);
+      }
     }
 
     function renderCustomItems() {
@@ -1285,23 +1320,12 @@
       if (statusName) {
         currentClaims[itemId] = statusName;
         saveLocalClaims(currentClaims);
-        syncCloudClaim(itemId, statusName);
       }
 
       customItems[itemId] = newItem;
       saveLocalCustomItems(customItems);
       renderCustomItems();
-
-      // Sync custom item to cloud
-      try {
-        await fetch(`https://wfffl-2026-draft-default-rtdb.firebaseio.com/custom_items/${itemId}.json`, {
-          method: 'PUT',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(newItem)
-        });
-      } catch (e) {
-        console.warn('Error syncing custom item:', e);
-      }
+      pushCloudStore();
 
       nameInput.value = '';
       document.getElementById('newItemCategory').value = '';
@@ -1334,78 +1358,17 @@
       if (statusName) {
         currentClaims[itemId] = statusName;
         saveLocalClaims(currentClaims);
-        syncCloudClaim(itemId, statusName);
       }
 
       customItems[itemId] = newItem;
       saveLocalCustomItems(customItems);
       renderCustomItems();
-
-      // Sync custom item to cloud DB
-      try {
-        await fetch(`https://wfffl-2026-draft-default-rtdb.firebaseio.com/custom_items/${itemId}.json`, {
-          method: 'PUT',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(newItem)
-        });
-      } catch (e) {
-        console.warn('Error syncing custom item:', e);
-      }
+      pushCloudStore();
 
       nameInput.value = '';
       document.getElementById('inlineItemCategory').value = '';
       document.getElementById('inlineItemTarget').value = '';
       document.getElementById('inlineItemStatusName').value = '';
-    }
-
-    function getLocalClaims() {
-      try {
-        return JSON.parse(localStorage.getItem(STORAGE_KEY)) || {};
-      } catch (e) {
-        return {};
-      }
-    }
-
-    function saveLocalClaims(claims) {
-      try {
-        localStorage.setItem(STORAGE_KEY, JSON.stringify(claims));
-      } catch (e) {}
-    }
-
-    async function fetchCloudClaims() {
-      try {
-        const res = await fetch(DB_ENDPOINT);
-        if (res.ok) {
-          const data = await res.json();
-          if (data && typeof data === 'object') {
-            currentClaims = { ...getLocalClaims(), ...data };
-            saveLocalClaims(currentClaims);
-            renderClaims();
-            return;
-          }
-        }
-      } catch (e) {
-        console.log('Using local claims store:', e);
-      }
-      currentClaims = getLocalClaims();
-      renderClaims();
-    }
-
-    async function syncCloudClaim(slotId, name) {
-      try {
-        const url = `https://wfffl-2026-draft-default-rtdb.firebaseio.com/claims/${slotId}.json`;
-        if (name === null) {
-          await fetch(url, { method: 'DELETE' });
-        } else {
-          await fetch(url, {
-            method: 'PUT',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(name)
-          });
-        }
-      } catch (e) {
-        console.warn('Cloud sync error:', e);
-      }
     }
 
     function renderClaims() {
@@ -1488,7 +1451,7 @@
       saveLocalClaims(currentClaims);
       renderClaims();
 
-      await syncCloudClaim(activeSlotId, name);
+      await pushCloudStore();
 
       if (saveBtn) saveBtn.textContent = 'Save & Claim';
       closeModal();
@@ -1504,7 +1467,7 @@
       saveLocalClaims(currentClaims);
       renderClaims();
 
-      await syncCloudClaim(activeSlotId, null);
+      await pushCloudStore();
 
       if (releaseBtn) releaseBtn.textContent = 'Release Slot';
       closeModal();
@@ -1518,9 +1481,10 @@
 
     document.addEventListener('DOMContentLoaded', () => {
       currentClaims = getLocalClaims();
+      customItems = getLocalCustomItems();
       renderClaims();
-      fetchCloudClaims();
-      fetchCloudCustomItems();
+      renderCustomItems();
+      fetchCloudStore();
     });
   </script>
 
