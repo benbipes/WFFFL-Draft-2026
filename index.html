@@ -1,673 +1,1146 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-  <meta http-equiv="Content-Style-Type" content="text/css">
-  <title></title>
-  <meta name="Generator" content="Cocoa HTML Writer">
-  <meta name="CocoaVersion" content="2685.3">
-  <style type="text/css">
-    body {background-color: #0b0d13}
-    p.p1 {margin: 0.0px 0.0px 0.0px 0.0px; text-align: center; font: 9.6px 'Helvetica Neue'; color: #f99294; -webkit-text-stroke: #f99294; background-color: #e82c35; background-color: rgba(232, 44, 53, 0.15)}
-    p.p2 {margin: 0.0px 0.0px 0.0px 0.0px; text-align: center; font: 9.6px 'Helvetica Neue'; color: #f99294; -webkit-text-stroke: #f99294; background-color: #e82c35; background-color: rgba(232, 44, 53, 0.15); min-height: 11.0px}
-    span.s1 {font-kerning: none}
-    span.s2 {font: 9.6px '.Apple Color Emoji UI'; font-kerning: none}
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>26th Annual Fantasy Draft Party | Asheville 2026</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Teko:wght@600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0b0f19;
+      --card-bg: #131b2e;
+      --card-border: #1e293b;
+      --accent-red: #ef4444;
+      --accent-gold: #f59e0b;
+      --accent-blue: #3b82f6;
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
+      --ben-color: #f97316;
+      --john-color: #22c55e;
+      --blaine-color: #eab308;
+      --matt-color: #a855f7;
+      --paul-graham-color: #38bdf8;
+      --bobby-color: #06b6d4;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: var(--bg);
+      color: var(--text-main);
+      line-height: 1.5;
+      padding-bottom: 60px;
+    }
+
+    header {
+      background: linear-gradient(180deg, #1e1b4b 0%, #0f172a 100%);
+      border-bottom: 1px solid #334155;
+      padding: 40px 20px 30px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    header::before {
+      content: "";
+      position: absolute;
+      top: 0; left: 0; right: 0; height: 4px;
+      background: linear-gradient(90deg, #ef4444, #f59e0b, #3b82f6, #8b5cf6);
+    }
+
+    .badge-year {
+      display: inline-block;
+      background: rgba(239, 68, 68, 0.15);
+      border: 1px solid rgba(239, 68, 68, 0.4);
+      color: #fca5a5;
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      padding: 4px 14px;
+      border-radius: 9999px;
+      margin-bottom: 12px;
+    }
+
+    h1 {
+      font-family: 'Teko', sans-serif;
+      font-size: clamp(2.5rem, 6vw, 4.2rem);
+      letter-spacing: 1px;
+      line-height: 1;
+      text-transform: uppercase;
+      background: linear-gradient(to right, #ffffff, #cbd5e1);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 8px;
+    }
+
+    .header-sub {
+      color: var(--text-muted);
+      font-size: 1rem;
+      max-width: 600px;
+      margin: 0 auto;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 16px;
+      font-weight: 500;
+    }
+
+    .header-sub span {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .container {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 0 16px;
+    }
+
+    /* Nav Tabs */
+    .nav-bar {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: rgba(11, 15, 25, 0.95);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--card-border);
+      padding: 10px 0;
+      margin-bottom: 24px;
+    }
+
+    .nav-inner {
+      display: flex;
+      gap: 8px;
+      overflow-x: auto;
+      padding-bottom: 4px;
+      scrollbar-width: none;
+    }
+    .nav-inner::-webkit-scrollbar { display: none; }
+
+    .nav-btn {
+      background: #1e293b;
+      color: var(--text-muted);
+      border: 1px solid transparent;
+      padding: 8px 16px;
+      border-radius: 8px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      cursor: pointer;
+      white-space: nowrap;
+      text-decoration: none;
+      transition: all 0.2s;
+    }
+
+    .nav-btn:hover, .nav-btn.active {
+      background: #334155;
+      color: #fff;
+      border-color: #64748b;
+    }
+
+    /* Section Cards */
+    section {
+      margin-bottom: 36px;
+      scroll-margin-top: 70px;
+    }
+
+    .card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 14px;
+      padding: 20px;
+      box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3);
+    }
+
+    .card-title {
+      font-family: 'Teko', sans-serif;
+      font-size: 1.8rem;
+      letter-spacing: 0.5px;
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      color: #f1f5f9;
+      border-bottom: 1px solid var(--card-border);
+      padding-bottom: 8px;
+    }
+
+    /* Cabin Info Card */
+    .cabin-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 12px;
+    }
+
+    .info-box {
+      background: #0f172a;
+      border: 1px solid #1e293b;
+      border-radius: 10px;
+      padding: 12px 14px;
+    }
+
+    .info-label {
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      color: var(--text-muted);
+      margin-bottom: 4px;
+    }
+
+    .info-val {
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: #f8fafc;
+      font-family: monospace;
+    }
+
+    /* Legend */
+    .legend-wrap {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 12px;
+    }
+
+    .badge {
+      font-size: 0.75rem;
+      font-weight: 700;
+      padding: 4px 10px;
+      border-radius: 6px;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .badge-ben { background: rgba(249, 115, 22, 0.15); color: #fb923c; border: 1px solid rgba(249, 115, 22, 0.3); }
+    .badge-john { background: rgba(34, 197, 94, 0.15); color: #4ade80; border: 1px solid rgba(34, 197, 94, 0.3); }
+    .badge-blaine { background: rgba(234, 179, 8, 0.15); color: #facc15; border: 1px solid rgba(234, 179, 8, 0.3); }
+    .badge-matt { background: rgba(168, 85, 247, 0.15); color: #c084fc; border: 1px solid rgba(168, 85, 247, 0.3); }
+    .badge-paul-graham { background: rgba(56, 189, 248, 0.15); color: #7dd3fc; border: 1px solid rgba(56, 189, 248, 0.3); }
+    .badge-bobby { background: rgba(6, 182, 212, 0.15); color: #22d3ee; border: 1px solid rgba(6, 182, 212, 0.3); }
+    .badge-all { background: rgba(148, 163, 184, 0.15); color: #cbd5e1; border: 1px solid rgba(148, 163, 184, 0.3); }
+    .badge-needed { background: rgba(239, 68, 68, 0.15); color: #f87171; border: 1px solid rgba(239, 68, 68, 0.3); }
+    .badge-ready { background: rgba(34, 197, 94, 0.15); color: #4ade80; border: 1px solid rgba(34, 197, 94, 0.3); }
+
+    /* Interactive Claim Badges & Modal */
+    .claim-btn {
+      cursor: pointer;
+      transition: all 0.2s ease;
+      user-select: none;
+    }
+
+    .claim-btn:hover {
+      transform: translateY(-1px) scale(1.04);
+      filter: brightness(1.2);
+      box-shadow: 0 4px 12px rgba(239, 68, 68, 0.25);
+    }
+
+    .badge-ready.claim-btn:hover {
+      box-shadow: 0 4px 12px rgba(34, 197, 94, 0.25);
+    }
+
+    /* Modal Overlay & Card */
+    .modal-overlay {
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(5, 8, 15, 0.82);
+      backdrop-filter: blur(8px);
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.25s ease;
+    }
+
+    .modal-overlay.active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .modal-card {
+      background: var(--card-bg);
+      border: 1px solid #334155;
+      border-radius: 16px;
+      max-width: 460px;
+      width: 100%;
+      padding: 24px;
+      box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.6);
+      transform: translateY(12px) scale(0.97);
+      transition: transform 0.25s ease;
+    }
+
+    .modal-overlay.active .modal-card {
+      transform: translateY(0) scale(1);
+    }
+
+    .modal-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 16px;
+      border-bottom: 1px solid var(--card-border);
+      padding-bottom: 12px;
+    }
+
+    .modal-header h3 {
+      font-family: 'Teko', sans-serif;
+      font-size: 1.8rem;
+      letter-spacing: 0.5px;
+      color: #f8fafc;
+      line-height: 1;
+    }
+
+    .modal-close {
+      background: transparent;
+      border: none;
+      color: var(--text-muted);
+      font-size: 1.5rem;
+      cursor: pointer;
+      line-height: 1;
+      padding: 0 4px;
+      transition: color 0.2s;
+    }
+
+    .modal-close:hover {
+      color: #fff;
+    }
+
+    .modal-body {
+      margin-bottom: 20px;
+    }
+
+    .modal-item-title {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--accent-gold);
+      margin-bottom: 12px;
+      background: rgba(245, 158, 11, 0.1);
+      border: 1px solid rgba(245, 158, 11, 0.25);
+      padding: 8px 12px;
+      border-radius: 8px;
+    }
+
+    .input-label {
+      display: block;
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      color: var(--text-muted);
+      margin-bottom: 6px;
+    }
+
+    .modal-input {
+      width: 100%;
+      background: #0f172a;
+      border: 1px solid #334155;
+      border-radius: 8px;
+      padding: 10px 14px;
+      color: #fff;
+      font-size: 0.95rem;
+      font-family: 'Inter', sans-serif;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+
+    .modal-input:focus {
+      border-color: var(--accent-blue);
+      box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.2);
+    }
+
+    .modal-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+      padding-top: 12px;
+      border-top: 1px solid var(--card-border);
+    }
+
+    .btn {
+      padding: 8px 16px;
+      border-radius: 8px;
+      font-size: 0.88rem;
+      font-weight: 600;
+      cursor: pointer;
+      border: 1px solid transparent;
+      transition: all 0.2s;
+    }
+
+    .btn-primary {
+      background: var(--accent-blue);
+      color: #fff;
+    }
+
+    .btn-primary:hover {
+      background: #2563eb;
+    }
+
+    .btn-secondary {
+      background: #1e293b;
+      color: var(--text-muted);
+    }
+
+    .btn-secondary:hover {
+      background: #334155;
+      color: #fff;
+    }
+
+    .btn-danger {
+      background: rgba(239, 68, 68, 0.15);
+      color: #f87171;
+      border-color: rgba(239, 68, 68, 0.3);
+    }
+
+    .btn-danger:hover {
+      background: rgba(239, 68, 68, 0.3);
+      color: #fff;
+    }
+    .timeline {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .event-card {
+      background: #0f172a;
+      border: 1px solid var(--card-border);
+      border-radius: 10px;
+      padding: 14px 16px;
+      display: grid;
+      grid-template-columns: 140px 1fr auto;
+      align-items: center;
+      gap: 16px;
+      transition: transform 0.15s ease;
+    }
+
+    .event-card:hover {
+      transform: translateX(4px);
+      border-color: #334155;
+    }
+
+    .event-time {
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      border-right: 1px solid #1e293b;
+      padding-right: 12px;
+    }
+
+    .event-time strong {
+      display: block;
+      color: #f1f5f9;
+      font-size: 0.9rem;
+    }
+
+    .event-info h4 {
+      font-size: 1rem;
+      color: #f8fafc;
+      font-weight: 700;
+      margin-bottom: 2px;
+    }
+
+    .event-info p {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+
+    /* Spirits Grid */
+    .spirits-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 12px;
+    }
+
+    .spirit-item {
+      background: #0f172a;
+      border: 1px solid #1e293b;
+      border-radius: 10px;
+      padding: 12px 14px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .spirit-details h4 {
+      font-size: 0.95rem;
+      color: #f1f5f9;
+      font-weight: 700;
+    }
+
+    .spirit-details p {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+
+    /* Interactive Table / Checklist */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.88rem;
+    }
+
+    th {
+      text-align: left;
+      padding: 10px 12px;
+      color: var(--text-muted);
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      border-bottom: 1px solid var(--card-border);
+    }
+
+    td {
+      padding: 12px;
+      border-bottom: 1px solid #1e293b;
+      color: #e2e8f0;
+    }
+
+    tr:last-child td { border-bottom: none; }
+
+    @media (max-width: 700px) {
+      .event-card {
+        grid-template-columns: 1fr;
+        gap: 8px;
+      }
+      .event-time {
+        border-right: none;
+        border-bottom: 1px solid #1e293b;
+        padding-bottom: 6px;
+      }
+    }
   </style>
 </head>
 <body>
-<p class="p1"><span class="s1">&lt;!DOCTYPE html&gt;</span></p>
-<p class="p1"><span class="s1">&lt;html lang="en"&gt;</span></p>
-<p class="p1"><span class="s1">&lt;head&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>&lt;meta charset="UTF-8" /&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>&lt;meta name="viewport" content="width=device-width, initial-scale=1.0" /&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>&lt;title&gt;26th Annual Fantasy Draft Party | Asheville 2026&lt;/title&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>&lt;link rel="preconnect" href="https://fonts.googleapis.com"&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>&lt;link rel="preconnect" href="https://fonts.gstatic.com" crossorigin&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>&lt;link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;family=Teko:wght@600;700&amp;display=swap" rel="stylesheet"&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>&lt;style&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>:root {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>--bg: #0b0f19;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>--card-bg: #131b2e;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>--card-border: #1e293b;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>--accent-red: #ef4444;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>--accent-gold: #f59e0b;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>--accent-blue: #3b82f6;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>--text-main: #f8fafc;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>--text-muted: #94a3b8;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>--ben-color: #f97316;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>--john-color: #22c55e;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>--blaine-color: #eab308;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>--matt-color: #a855f7;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>--paul-graham-color: #38bdf8;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>--bobby-color: #06b6d4;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>}</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>* {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>box-sizing: border-box;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>margin: 0;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>padding: 0;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>}</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>body {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>font-family: 'Inter', sans-serif;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>background-color: var(--bg);</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>color: var(--text-main);</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>line-height: 1.5;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>padding-bottom: 60px;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>}</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>header {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>background: linear-gradient(180deg, #1e1b4b 0%, #0f172a 100%);</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>border-bottom: 1px solid #334155;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>padding: 40px 20px 30px;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>text-align: center;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>position: relative;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>overflow: hidden;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>}</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>header::before {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>content: "";</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>position: absolute;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>top: 0; left: 0; right: 0; height: 4px;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>background: linear-gradient(90deg, #ef4444, #f59e0b, #3b82f6, #8b5cf6);</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>}</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>.badge-year {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>display: inline-block;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>background: rgba(239, 68, 68, 0.15);</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>border: 1px solid rgba(239, 68, 68, 0.4);</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>color: #fca5a5;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>font-size: 0.8rem;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>font-weight: 700;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>letter-spacing: 1.5px;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>text-transform: uppercase;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>padding: 4px 14px;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>border-radius: 9999px;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>margin-bottom: 12px;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>}</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>h1 {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>font-family: 'Teko', sans-serif;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>font-size: clamp(2.5rem, 6vw, 4.2rem);</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>letter-spacing: 1px;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>line-height: 1;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>text-transform: uppercase;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>background: linear-gradient(to right, #ffffff, #cbd5e1);</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>-webkit-background-clip: text;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>-webkit-text-fill-color: transparent;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>margin-bottom: 8px;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>}</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>.header-sub {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>color: var(--text-muted);</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>font-size: 1rem;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>max-width: 600px;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>margin: 0 auto;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>display: flex;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>flex-wrap: wrap;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>justify-content: center;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>gap: 16px;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>font-weight: 500;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>}</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>.header-sub span {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>display: inline-flex;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>align-items: center;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>gap: 6px;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>}</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>.container {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>max-width: 1000px;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>margin: 0 auto;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>padding: 0 16px;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>}</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>/* Nav Tabs */</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>.nav-bar {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>position: sticky;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>top: 0;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>z-index: 50;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>background: rgba(11, 15, 25, 0.95);</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>backdrop-filter: blur(8px);</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>border-bottom: 1px solid var(--card-border);</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>padding: 10px 0;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>margin-bottom: 24px;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>}</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>.nav-inner {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>display: flex;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>gap: 8px;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>overflow-x: auto;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>padding-bottom: 4px;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>scrollbar-width: none;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>}</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>.nav-inner::-webkit-scrollbar { display: none; }</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>.nav-btn {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>background: #1e293b;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>color: var(--text-muted);</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>border: 1px solid transparent;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>padding: 8px 16px;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>border-radius: 8px;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>font-size: 0.85rem;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>font-weight: 600;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>cursor: pointer;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>white-space: nowrap;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>text-decoration: none;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>transition: all 0.2s;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>}</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>.nav-btn:hover, .nav-btn.active {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>background: #334155;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>color: #fff;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>border-color: #64748b;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>}</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>/* Section Cards */</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>section {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>margin-bottom: 36px;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>scroll-margin-top: 70px;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>}</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>.card {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>background: var(--card-bg);</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>border: 1px solid var(--card-border);</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>border-radius: 14px;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>padding: 20px;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3);</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>}</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>.card-title {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>font-family: 'Teko', sans-serif;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>font-size: 1.8rem;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>letter-spacing: 0.5px;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>margin-bottom: 16px;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>display: flex;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>align-items: center;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>justify-content: space-between;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>color: #f1f5f9;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>border-bottom: 1px solid var(--card-border);</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>padding-bottom: 8px;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>}</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>/* Cabin Info Card */</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>.cabin-grid {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>display: grid;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>gap: 12px;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>}</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>.info-box {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>background: #0f172a;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>border: 1px solid #1e293b;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>border-radius: 10px;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>padding: 12px 14px;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>}</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>.info-label {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>font-size: 0.75rem;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>font-weight: 700;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>text-transform: uppercase;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>letter-spacing: 0.8px;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>color: var(--text-muted);</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>margin-bottom: 4px;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>}</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>.info-val {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>font-size: 0.95rem;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>font-weight: 600;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>color: #f8fafc;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>font-family: monospace;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>}</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>/* Legend */</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>.legend-wrap {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>display: flex;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>flex-wrap: wrap;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>gap: 8px;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>margin-top: 12px;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>}</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>.badge {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>font-size: 0.75rem;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>font-weight: 700;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>padding: 4px 10px;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>border-radius: 6px;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>display: inline-flex;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>align-items: center;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>gap: 6px;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>}</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>.badge-ben { background: rgba(249, 115, 22, 0.15); color: #fb923c; border: 1px solid rgba(249, 115, 22, 0.3); }</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>.badge-john { background: rgba(34, 197, 94, 0.15); color: #4ade80; border: 1px solid rgba(34, 197, 94, 0.3); }</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>.badge-blaine { background: rgba(234, 179, 8, 0.15); color: #facc15; border: 1px solid rgba(234, 179, 8, 0.3); }</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>.badge-matt { background: rgba(168, 85, 247, 0.15); color: #c084fc; border: 1px solid rgba(168, 85, 247, 0.3); }</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>.badge-paul-graham { background: rgba(56, 189, 248, 0.15); color: #7dd3fc; border: 1px solid rgba(56, 189, 248, 0.3); }</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>.badge-bobby { background: rgba(6, 182, 212, 0.15); color: #22d3ee; border: 1px solid rgba(6, 182, 212, 0.3); }</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>.badge-all { background: rgba(148, 163, 184, 0.15); color: #cbd5e1; border: 1px solid rgba(148, 163, 184, 0.3); }</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>.badge-needed { background: rgba(239, 68, 68, 0.15); color: #f87171; border: 1px solid rgba(239, 68, 68, 0.3); }</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>.badge-ready { background: rgba(34, 197, 94, 0.15); color: #4ade80; border: 1px solid rgba(34, 197, 94, 0.3); }</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>/* Interactive Claim Badges &amp; Modal */</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>.claim-btn {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>cursor: pointer;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>transition: all 0.2s ease;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>user-select: none;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>}</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>.claim-btn:hover {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>transform: translateY(-1px) scale(1.04);</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>filter: brightness(1.2);</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>box-shadow: 0 4px 12px rgba(239, 68, 68, 0.25);</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>}</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>.badge-ready.claim-btn:hover {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>box-shadow: 0 4px 12px rgba(34, 197, 94, 0.25);</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>}</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>/* Modal Overlay &amp; Card */</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>.modal-overlay {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>position: fixed;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>top: 0; left: 0; right: 0; bottom: 0;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>background: rgba(5, 8, 15, 0.82);</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>backdrop-filter: blur(8px);</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>z-index: 1000;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>display: flex;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>align-items: center;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>justify-content: center;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>padding: 16px;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>opacity: 0;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>pointer-events: none;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>transition: opacity 0.25s ease;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>}</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>.modal-overlay.active {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>opacity: 1;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>pointer-events: auto;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>}</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>.modal-card {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>background: var(--card-bg);</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>border: 1px solid #334155;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>border-radius: 16px;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>max-width: 460px;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>width: 100%;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>padding: 24px;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.6);</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>transform: translateY(12px) scale(0.97);</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>transition: transform 0.25s ease;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>}</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>.modal-overlay.active .modal-card {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>transform: translateY(0) scale(1);</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>}</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>.modal-header {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>display: flex;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>justify-content: space-between;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>align-items: center;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>margin-bottom: 16px;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>border-bottom: 1px solid var(--card-border);</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>padding-bottom: 12px;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>}</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>.modal-header h3 {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>font-family: 'Teko', sans-serif;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>font-size: 1.8rem;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>letter-spacing: 0.5px;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>color: #f8fafc;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>line-height: 1;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>}</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>.modal-close {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>background: transparent;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>border: none;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>color: var(--text-muted);</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>font-size: 1.5rem;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>cursor: pointer;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>line-height: 1;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>padding: 0 4px;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>transition: color 0.2s;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>}</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>.modal-close:hover {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>color: #fff;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>}</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>.modal-body {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>margin-bottom: 20px;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>}</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>.modal-item-title {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>font-size: 1.05rem;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>font-weight: 700;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>color: var(--accent-gold);</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>margin-bottom: 12px;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>background: rgba(245, 158, 11, 0.1);</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>border: 1px solid rgba(245, 158, 11, 0.25);</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>padding: 8px 12px;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>border-radius: 8px;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>}</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>.input-label {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>display: block;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>font-size: 0.75rem;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>font-weight: 700;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>text-transform: uppercase;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>letter-spacing: 0.8px;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>color: var(--text-muted);</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>margin-bottom: 6px;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>}</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>.modal-input {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>width: 100%;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>background: #0f172a;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>border: 1px solid #334155;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>border-radius: 8px;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>padding: 10px 14px;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>color: #fff;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>font-size: 0.95rem;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>font-family: 'Inter', sans-serif;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>outline: none;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>transition: border-color 0.2s;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>}</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>.modal-input:focus {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>border-color: var(--accent-blue);</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.2);</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>}</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>.modal-footer {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>display: flex;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>justify-content: space-between;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>align-items: center;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>gap: 10px;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>padding-top: 12px;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>border-top: 1px solid var(--card-border);</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>}</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>.btn {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>padding: 8px 16px;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>border-radius: 8px;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>font-size: 0.88rem;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>font-weight: 600;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>cursor: pointer;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>border: 1px solid transparent;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>transition: all 0.2s;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>}</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>.btn-primary {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>background: var(--accent-blue);</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>color: #fff;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>}</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>.btn-primary:hover {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>background: #2563eb;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>}</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>.btn-secondary {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>background: #1e293b;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>color: var(--text-muted);</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>}</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>.btn-secondary:hover {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>background: #334155;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>color: #fff;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>}</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>.btn-danger {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>background: rgba(239, 68, 68, 0.15);</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>color: #f87171;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>border-color: rgba(239, 68, 68, 0.3);</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>}</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>.btn-danger:hover {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>background: rgba(239, 68, 68, 0.3);</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>color: #fff;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>}</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>.timeline {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>display: flex;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>flex-direction: column;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>gap: 14px;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>}</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>.event-card {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>background: #0f172a;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>border: 1px solid var(--card-border);</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>border-radius: 10px;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>padding: 14px 16px;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>display: grid;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>grid-template-columns: 140px 1fr auto;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>align-items: center;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>gap: 16px;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>transition: transform 0.15s ease;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>}</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>.event-card:hover {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>transform: translateX(4px);</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>border-color: #334155;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>}</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>.event-time {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>font-size: 0.8rem;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>font-weight: 600;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>color: var(--text-muted);</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>border-right: 1px solid #1e293b;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>padding-right: 12px;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>}</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>.event-time strong {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>display: block;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>color: #f1f5f9;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>font-size: 0.9rem;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>}</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>.event-info h4 {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>font-size: 1rem;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>color: #f8fafc;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>font-weight: 700;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>margin-bottom: 2px;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>}</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>.event-info p {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>font-size: 0.85rem;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>color: var(--text-muted);</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>}</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>/* Spirits Grid */</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>.spirits-grid {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>display: grid;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>gap: 12px;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>}</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>.spirit-item {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>background: #0f172a;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>border: 1px solid #1e293b;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>border-radius: 10px;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>padding: 12px 14px;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>display: flex;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>justify-content: space-between;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>align-items: center;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>}</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>.spirit-details h4 {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>font-size: 0.95rem;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>color: #f1f5f9;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>font-weight: 700;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>}</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>.spirit-details p {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>font-size: 0.8rem;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>color: var(--text-muted);</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>}</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>/* Interactive Table / Checklist */</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>table {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>width: 100%;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>border-collapse: collapse;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>font-size: 0.88rem;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>}</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>th {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>text-align: left;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>padding: 10px 12px;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>color: var(--text-muted);</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>font-size: 0.75rem;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>text-transform: uppercase;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>letter-spacing: 0.5px;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>border-bottom: 1px solid var(--card-border);</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>}</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>td {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>padding: 12px;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>border-bottom: 1px solid #1e293b;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>color: #e2e8f0;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>}</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>tr:last-child td { border-bottom: none; }</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>@media (max-width: 700px) {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>.event-card {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>grid-template-columns: 1fr;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>gap: 8px;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>}</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>.event-time {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>border-right: none;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>border-bottom: 1px solid #1e293b;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>padding-bottom: 6px;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>}</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>}</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>&lt;/style&gt;</span></p>
-<p class="p1"><span class="s1">&lt;/head&gt;</span></p>
-<p class="p1"><span class="s1">&lt;body&gt;</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>&lt;header&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;div class="container"&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>&lt;span class="badge-year"&gt;Season 26 • Asheville, NC&lt;/span&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>&lt;h1&gt;Fantasy Football Draft Weekend&lt;/h1&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>&lt;div class="header-sub"&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;span&gt;</span><span class="s2">📅</span><span class="s1"> August 27 – 30, 2026&lt;/span&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;span&gt;</span><span class="s2">🎯</span><span class="s1"> 3-Board Dart Tournament&lt;/span&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;span&gt;</span><span class="s2">🏈</span><span class="s1"> NC State vs Game Watch&lt;/span&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>&lt;/header&gt;</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>&lt;div class="nav-bar"&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;div class="container"&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>&lt;div class="nav-inner"&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;a href="#cabin" class="nav-btn active"&gt;</span><span class="s2">🏡</span><span class="s1"> Cabin Info&lt;/a&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;a href="#schedule" class="nav-btn"&gt;</span><span class="s2">📅</span><span class="s1"> Master Schedule&lt;/a&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;a href="#spirits" class="nav-btn"&gt;</span><span class="s2">🥃</span><span class="s1"> Bourbon &amp; Mezcal&lt;/a&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;a href="#equipment" class="nav-btn"&gt;</span><span class="s2">🎯</span><span class="s1"> Gear &amp; Darts&lt;/a&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;a href="#groceries" class="nav-btn"&gt;</span><span class="s2">🛒</span><span class="s1"> Sign-Ups&lt;/a&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>&lt;/div&gt;</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>&lt;main class="container"&gt;</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;!-- Cabin Info --&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;section id="cabin"&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>&lt;div class="card"&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;div class="card-title"&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">          </span>&lt;span&gt;</span><span class="s2">🏡</span><span class="s1"> Cabin &amp; Access Info&lt;/span&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">          </span>&lt;span style="font-size: 0.9rem; font-family: 'Inter'; color: var(--text-muted);"&gt;Asheville, NC&lt;/span&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;div class="cabin-grid"&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">          </span>&lt;div class="info-box"&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;div class="info-label"&gt;</span><span class="s2">📍</span><span class="s1"> Street Address&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;div class="info-val"&gt;[ Insert Rental Address, Asheville, NC ]&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">          </span>&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">          </span>&lt;div class="info-box"&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;div class="info-label"&gt;</span><span class="s2">🔑</span><span class="s1"> Keypad / Lock Code&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;div class="info-val"&gt;[ Enter PIN / Code ]&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">          </span>&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">          </span>&lt;div class="info-box"&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;div class="info-label"&gt;</span><span class="s2">⏰</span><span class="s1"> Check-In / Out&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;div class="info-val"&gt;Thu 4:00 PM / Sun 11:00 AM&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">          </span>&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">          </span>&lt;div class="info-box"&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;div class="info-label"&gt;</span><span class="s2">📶</span><span class="s1"> Wi-Fi &amp; Password&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;div class="info-val"&gt;SSID: [ Name ] | Key: [ Pass ]&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">          </span>&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;div style="margin-top: 20px;"&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">          </span>&lt;div class="info-label"&gt;</span><span class="s2">🎨</span><span class="s1"> League Roles &amp; Color Key&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">          </span>&lt;div class="legend-wrap"&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;span class="badge badge-ben"&gt;Dover (BBQ, French Dips, Mix)&lt;/span&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;span class="badge badge-john"&gt;John (Fri Breakfast &amp; Street Corn)&lt;/span&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;span class="badge badge-blaine"&gt;Blaine (Fri Carnitas)&lt;/span&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;span class="badge badge-matt"&gt;Matt (Mezcal &amp; Bourbon Lineup)&lt;/span&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;span class="badge badge-paul-graham"&gt;Paul &amp; Graham (Sat BoJangles)&lt;/span&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;span class="badge badge-bobby"&gt;Bobby (Dart Setup #3)&lt;/span&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;span class="badge badge-all"&gt;All League&lt;/span&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">          </span>&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;/section&gt;</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;!-- Schedule --&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;section id="schedule"&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>&lt;div class="card"&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;div class="card-title"&gt;</span><span class="s2">📅</span><span class="s1"> Master Schedule &amp; Meals&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;div class="timeline"&gt;</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">          </span>&lt;!-- Thursday --&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">          </span>&lt;div class="event-card"&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;div class="event-time"&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">              </span>&lt;strong&gt;Thursday&lt;/strong&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">              </span>4:00 PM</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;div class="event-info"&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">              </span>&lt;h4&gt;Cabin Check-In &amp; Dart Calibration&lt;/h4&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">              </span>&lt;p&gt;Unpack, room selection, set up all 3 tournament dart board stands.&lt;/p&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;div&gt;&lt;span class="badge badge-all"&gt;All&lt;/span&gt;&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">          </span>&lt;/div&gt;</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">          </span>&lt;div class="event-card"&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;div class="event-time"&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">              </span>&lt;strong&gt;Thursday&lt;/strong&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">              </span>7:30 PM</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;div class="event-info"&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">              </span>&lt;h4&gt;Welcome Smokehouse Feast&lt;/h4&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">              </span>&lt;p&gt;4 racks smoked ribs, 4 smoked turkey breasts, baked beans, and sausage.&lt;/p&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;div&gt;&lt;span class="badge badge-ben"&gt;Dover&lt;/span&gt;&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">          </span>&lt;/div&gt;</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">          </span>&lt;div class="event-card"&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;div class="event-time"&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">              </span>&lt;strong&gt;Thursday&lt;/strong&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">              </span>9:00 PM</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;div class="event-info"&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">              </span>&lt;h4&gt;</span><span class="s2">🥃</span><span class="s1"> Heavyweight Bourbon Tasting&lt;/h4&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">              </span>&lt;p&gt;Full 7-bourbon tasting flight after dinner paired with opening dart rounds.&lt;/p&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;div&gt;&lt;span class="badge badge-matt"&gt;Matt&lt;/span&gt;&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">          </span>&lt;/div&gt;</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">          </span>&lt;div class="event-card"&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;div class="event-time"&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">              </span>&lt;strong&gt;Thursday&lt;/strong&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">              </span>10:30 PM</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;div class="event-info"&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">              </span>&lt;h4&gt;Dart Warm-Up Matches&lt;/h4&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">              </span>&lt;p&gt;Opening cancellation &amp; warm-up rounds across 3 boards.&lt;/p&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;div&gt;&lt;span class="badge badge-all"&gt;All&lt;/span&gt;&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">          </span>&lt;/div&gt;</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">          </span>&lt;!-- Friday --&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">          </span>&lt;div class="event-card"&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;div class="event-time"&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">              </span>&lt;strong&gt;Friday&lt;/strong&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">              </span>8:30 AM</span></p>
+
+  <header>
+    <div class="container">
+      <span class="badge-year">Season 26 • Asheville, NC</span>
+      <h1>Fantasy Football Draft Weekend</h1>
+      <div class="header-sub">
+        <span>📅 August 27 – 30, 2026</span>
+        <span>🎯 3-Board Dart Tournament</span>
+        <span>🏈 NC State vs Game Watch</span>
+      </div>
+    </div>
+  </header>
+
+  <div class="nav-bar">
+    <div class="container">
+      <div class="nav-inner">
+        <a href="#cabin" class="nav-btn active">🏡 Cabin Info</a>
+        <a href="#schedule" class="nav-btn">📅 Master Schedule</a>
+        <a href="#spirits" class="nav-btn">🥃 Bourbon & Mezcal</a>
+        <a href="#equipment" class="nav-btn">🎯 Gear & Darts</a>
+        <a href="#groceries" class="nav-btn">🛒 Sign-Ups</a>
+      </div>
+    </div>
+  </div>
+
+  <main class="container">
+
+    <!-- Cabin Info -->
+    <section id="cabin">
+      <div class="card">
+        <div class="card-title">
+          <span>🏡 Cabin & Access Info</span>
+          <span style="font-size: 0.9rem; font-family: 'Inter'; color: var(--text-muted);">Asheville, NC</span>
+        </div>
+        <div class="cabin-grid">
+          <div class="info-box">
+            <div class="info-label">📍 Street Address</div>
+            <div class="info-val">[ Insert Rental Address, Asheville, NC ]</div>
+          </div>
+          <div class="info-box">
+            <div class="info-label">🔑 Keypad / Lock Code</div>
+            <div class="info-val">[ Enter PIN / Code ]</div>
+          </div>
+          <div class="info-box">
+            <div class="info-label">⏰ Check-In / Out</div>
+            <div class="info-val">Thu 4:00 PM / Sun 11:00 AM</div>
+          </div>
+          <div class="info-box">
+            <div class="info-label">📶 Wi-Fi & Password</div>
+            <div class="info-val">SSID: [ Name ] | Key: [ Pass ]</div>
+          </div>
+        </div>
+
+        <div style="margin-top: 20px;">
+          <div class="info-label">🎨 League Roles & Color Key</div>
+          <div class="legend-wrap">
+            <span class="badge badge-ben">Dover (BBQ, French Dips, Mix)</span>
+            <span class="badge badge-john">John (Fri Breakfast & Street Corn)</span>
+            <span class="badge badge-blaine">Blaine (Fri Carnitas)</span>
+            <span class="badge badge-matt">Matt (Mezcal & Bourbon Lineup)</span>
+            <span class="badge badge-paul-graham">Paul & Graham (Sat BoJangles)</span>
+            <span class="badge badge-bobby">Bobby (Dart Setup #3)</span>
+            <span class="badge badge-all">All League</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Schedule -->
+    <section id="schedule">
+      <div class="card">
+        <div class="card-title">📅 Master Schedule & Meals</div>
+        <div class="timeline">
+
+          <!-- Thursday -->
+          <div class="event-card">
+            <div class="event-time">
+              <strong>Thursday</strong>
+              4:00 PM
+            </div>
+            <div class="event-info">
+              <h4>Cabin Check-In & Dart Calibration</h4>
+              <p>Unpack, room selection, set up all 3 tournament dart board stands.</p>
+            </div>
+            <div><span class="badge badge-all">All</span></div>
+          </div>
+
+          <div class="event-card">
+            <div class="event-time">
+              <strong>Thursday</strong>
+              7:30 PM
+            </div>
+            <div class="event-info">
+              <h4>Welcome Smokehouse Feast</h4>
+              <p>4 racks smoked ribs, 4 smoked turkey breasts, baked beans, and sausage.</p>
+            </div>
+            <div><span class="badge badge-ben">Dover</span></div>
+          </div>
+
+          <div class="event-card">
+            <div class="event-time">
+              <strong>Thursday</strong>
+              9:00 PM
+            </div>
+            <div class="event-info">
+              <h4>🥃 Heavyweight Bourbon Tasting</h4>
+              <p>Full 7-bourbon tasting flight after dinner paired with opening dart rounds.</p>
+            </div>
+            <div><span class="badge badge-matt">Matt</span></div>
+          </div>
+
+          <div class="event-card">
+            <div class="event-time">
+              <strong>Thursday</strong>
+              10:30 PM
+            </div>
+            <div class="event-info">
+              <h4>Dart Warm-Up Matches</h4>
+              <p>Opening cancellation & warm-up rounds across 3 boards.</p>
+            </div>
+            <div><span class="badge badge-all">All</span></div>
+          </div>
+
+          <!-- Friday -->
+          <div class="event-card">
+            <div class="event-time">
+              <strong>Friday</strong>
+              8:30 AM
+            </div>
+            <div class="event-info">
+              <h4>Hearty Southern Breakfast</h4>
+              <p>Scrambled eggs, biscuits & gravy, crispy bacon, and fresh fruit.</p>
+            </div>
+            <div><span class="badge badge-john">John</span></div>
+          </div>
+
+          <div class="event-card">
+            <div class="event-time">
+              <strong>Friday</strong>
+              12:30 PM
+            </div>
+            <div class="event-info">
+              <h4>Asheville Brewery & Downtown Outing</h4>
+              <p>Casual lunch, local taprooms, and exploring town.</p>
+            </div>
+            <div><span class="badge badge-needed">Optional</span></div>
+          </div>
+
+          <div class="event-card">
+            <div class="event-time">
+              <strong>Friday</strong>
+              7:00 PM
+            </div>
+            <div class="event-info">
+              <h4>Taco Night Fiesta & Mezcal Tasting</h4>
+              <p>Slow-smoked carnitas & grilled Mexican street corn with artisanal Mezcal flight.</p>
+            </div>
+            <div style="display: flex; gap: 4px; flex-wrap: wrap;">
+              <span class="badge badge-blaine">Blaine</span>
+              <span class="badge badge-john">John</span>
+              <span class="badge badge-matt">Matt</span>
+            </div>
+          </div>
+
+          <!-- Saturday -->
+          <div class="event-card">
+            <div class="event-time">
+              <strong>Saturday</strong>
+              9:00 AM
+            </div>
+            <div class="event-info">
+              <h4>BoJangles & Smoked Bloody Marys</h4>
+              <p>Fresh BoJangles biscuit run + Dover Signature Smoked Bloody Mary pitchers.</p>
+            </div>
+            <div style="display: flex; gap: 4px;">
+              <span class="badge badge-paul-graham">Paul & Graham</span>
+              <span class="badge badge-ben">Dover</span>
+            </div>
+          </div>
+
+          <div class="event-card">
+            <div class="event-time">
+              <strong>Saturday</strong>
+              12:00 PM
+            </div>
+            <div class="event-info">
+              <h4>NC State Wolfpack Watch Party</h4>
+              <p>Pregame drinks, sound up on the main screen, and gameday snacks.</p>
+            </div>
+            <div><span class="badge badge-all">All</span></div>
+          </div>
+
+          <div class="event-card" style="border-left: 4px solid var(--accent-gold);">
+            <div class="event-time">
+              <strong>Saturday</strong>
+              4:00 PM
+            </div>
+            <div class="event-info">
+              <h4>🏆 26th Annual Fantasy Draft</h4>
+              <p>The main event! Draft board live, timer on the clock, championship dreams.</p>
+            </div>
+            <div><span class="badge badge-all">All</span></div>
+          </div>
+
+          <div class="event-card">
+            <div class="event-time">
+              <strong>Saturday</strong>
+              7:30 PM
+            </div>
+            <div class="event-info">
+              <h4>Post-Draft Championship French Dips</h4>
+              <p>Famous roast beef French Dips with slow-simmered au jus.</p>
+            </div>
+            <div><span class="badge badge-ben">Dover</span></div>
+          </div>
+
+          <!-- Sunday -->
+          <div class="event-card">
+            <div class="event-time">
+              <strong>Sunday</strong>
+              11:00 AM
+            </div>
+            <div class="event-info">
+              <h4>Farewell Brunch & Checkout</h4>
+              <p>Leftovers, gear pack-up, dart stands breakdown, and departure.</p>
+            </div>
+            <div><span class="badge badge-all">All</span></div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- Spirits Flight -->
+    <section id="spirits">
+      <div class="card">
+        <div class="card-title">
+          <span>🥃 Bourbon & Mezcal Lineup</span>
+          <span class="badge badge-matt">Curated by Matt</span>
+        </div>
+        <div class="spirits-grid">
+          <div class="spirit-item">
+            <div class="spirit-details">
+              <h4>George T. Stagg</h4>
+              <p>Buffalo Trace Antique Collection (BTAC) • Barrel Proof</p>
+            </div>
+            <span class="badge badge-ready">Thu Bourbon</span>
+          </div>
+          <div class="spirit-item">
+            <div class="spirit-details">
+              <h4>Russell's Reserve 13 Year</h4>
+              <p>13-Yr Age Stated • Barrel Proof • Non-Chill Filtered</p>
+            </div>
+            <span class="badge badge-ready">Thu Bourbon</span>
+          </div>
+          <div class="spirit-item">
+            <div class="spirit-details">
+              <h4>Colonel E.H. Taylor, Jr.</h4>
+              <p>Straight Kentucky Bourbon • Barrel Proof Uncut</p>
+            </div>
+            <span class="badge badge-ready">Thu Bourbon</span>
+          </div>
+          <div class="spirit-item">
+            <div class="spirit-details">
+              <h4>Old Forester 1924</h4>
+              <p>10-Year Old • 100 Proof • Whiskey Row 5th Release</p>
+            </div>
+            <span class="badge badge-ready">Thu Bourbon</span>
+          </div>
+          <div class="spirit-item">
+            <div class="spirit-details">
+              <h4>Elijah Craig 15 Year Single Barrel</h4>
+              <p>15-Year Age Stated Red Label Single Barrel</p>
+            </div>
+            <span class="badge badge-ready">Thu Bourbon</span>
+          </div>
+          <div class="spirit-item">
+            <div class="spirit-details">
+              <h4>Willett Family Estate Single Barrel</h4>
+              <p>Purple Foil Cask Selection Single Barrel</p>
+            </div>
+            <span class="badge badge-ready">Thu Bourbon</span>
+          </div>
+          <div class="spirit-item">
+            <div class="spirit-details">
+              <h4>Nashtucky 8 Year Single Barrel</h4>
+              <p>Nashville Barrel Co. • 8-Year Cask Strength</p>
+            </div>
+            <span class="badge badge-ready">Thu Bourbon</span>
+          </div>
+          <div class="spirit-item">
+            <div class="spirit-details">
+              <h4>Macurichos, Gusto Histórico, Real Minero</h4>
+              <p>Artisanal Agave / Oaxacan Mezcal Flight</p>
+            </div>
+            <span class="badge badge-ready">Fri Mezcal</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Gear & Darts -->
+    <section id="equipment">
+      <div class="card">
+        <div class="card-title">🎯 Gear, Tech & Dart Stations</div>
+        <table>
+          <thead>
+            <tr>
+              <th>Station / Item</th>
+              <th>Details</th>
+              <th>Assigned</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Dart Station #1</strong></td>
+              <td>Cabin House Dart Board & Cabinet</td>
+              <td><span class="badge badge-all">Cabin Property</span></td>
+              <td><span class="badge badge-ready">On-Site</span></td>
+            </tr>
+            <tr>
+              <td><strong>Dart Station #2</strong></td>
+              <td>Dart Board, Portable Stand & Surround</td>
+              <td><span class="badge badge-ben">Dover</span></td>
+              <td><span class="badge badge-ready">Confirmed</span></td>
+            </tr>
+            <tr>
+              <td><strong>Dart Station #3</strong></td>
+              <td>Dart Board, Portable Stand & Surround</td>
+              <td><span class="badge badge-bobby">Bobby</span></td>
+              <td><span class="badge badge-ready">Confirmed</span></td>
+            </tr>
+            <tr>
+              <td><strong>Lawn Games</strong></td>
+              <td>Cornhole Boards + Bags (Regulation Sets)</td>
+              <td><span class="badge badge-needed claim-btn" data-slot-id="gear-lawn-games" data-slot-name="Lawn Games (Cornhole Sets)" data-default-label="Sign Up">Sign Up</span></td>
+              <td><span id="status-gear-lawn-games" class="badge badge-needed">Needed</span></td>
+            </tr>
+            <tr>
+              <td><strong>Spirits Gear</strong></td>
+              <td>Glencairns / Glasses & Large Ice Molds</td>
+              <td><span class="badge badge-needed claim-btn" data-slot-id="gear-spirits-gear" data-slot-name="Spirits Gear (Glencairns & Ice Molds)" data-default-label="Sign Up">Sign Up</span></td>
+              <td><span id="status-gear-spirits-gear" class="badge badge-needed">Needed</span></td>
+            </tr>
+            <tr>
+              <td><strong>Draft Tech</strong></td>
+              <td>HDMI Cables, Extension Cords, Display Adapter</td>
+              <td><span class="badge badge-needed claim-btn" data-slot-id="gear-draft-tech" data-slot-name="Draft Tech (HDMI Cables & Display Adapters)" data-default-label="Sign Up">Sign Up</span></td>
+              <td><span id="status-gear-draft-tech" class="badge badge-needed">Needed</span></td>
+            </tr>
+            <tr>
+              <td><strong>Outdoor Audio</strong></td>
+              <td>Waterproof Bluetooth Speaker</td>
+              <td><span class="badge badge-needed claim-btn" data-slot-id="gear-audio" data-slot-name="Outdoor Audio (Bluetooth Speaker)" data-default-label="Sign Up">Sign Up</span></td>
+              <td><span id="status-gear-audio" class="badge badge-needed">Needed</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- Sign-Ups -->
+    <section id="groceries">
+      <div class="card">
+        <div class="card-title">🛒 Open Needs & Sign-Up Sheet</div>
+        <table>
+          <thead>
+            <tr>
+              <th>Item / Need</th>
+              <th>Category</th>
+              <th>Target Slot</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Taco Shells, Tortillas & Toppings</strong></td>
+              <td>Food / Groceries</td>
+              <td>Friday Dinner</td>
+              <td><span class="badge badge-needed claim-btn" data-slot-id="grocery-taco-shells" data-slot-name="Taco Shells, Tortillas & Toppings" data-default-label="Claim Slot">Claim Slot</span></td>
+            </tr>
+            <tr>
+              <td><strong>Vodka & Bloody Mary Garnishes</strong></td>
+              <td>Bar / Breakfast</td>
+              <td>Saturday Morning</td>
+              <td><span class="badge badge-needed claim-btn" data-slot-id="grocery-vodka-garnishes" data-slot-name="Vodka & Bloody Mary Garnishes" data-default-label="Claim Slot">Claim Slot</span></td>
+            </tr>
+            <tr>
+              <td><strong>Bulk Craft Beer & Seltzers</strong></td>
+              <td>Beverages</td>
+              <td>All Weekend</td>
+              <td><span class="badge badge-needed claim-btn" data-slot-id="grocery-craft-beer" data-slot-name="Bulk Craft Beer & Seltzers" data-default-label="Claim Slot">Claim Slot</span></td>
+            </tr>
+            <tr>
+              <td><strong>Game Day Chips, Pretzels & Dips</strong></td>
+              <td>Snacks</td>
+              <td>Draft & NC State Watch</td>
+              <td><span class="badge badge-needed claim-btn" data-slot-id="grocery-chips-dips" data-slot-name="Game Day Chips, Pretzels & Dips" data-default-label="Claim Slot">Claim Slot</span></td>
+            </tr>
+            <tr>
+              <td><strong>Paper Plates, Napkins, Cutlery, Cups</strong></td>
+              <td>Supplies</td>
+              <td>Cabin Essentials</td>
+              <td><span class="badge badge-needed claim-btn" data-slot-id="grocery-paper-goods" data-slot-name="Paper Plates, Napkins, Cutlery & Cups" data-default-label="Claim Slot">Claim Slot</span></td>
+            </tr>
+            <tr>
+              <td><strong>Bottled Water & Soft Drinks</strong></td>
+              <td>Hydration</td>
+              <td>All Weekend</td>
+              <td><span class="badge badge-needed claim-btn" data-slot-id="grocery-water-soda" data-slot-name="Bottled Water & Soft Drinks" data-default-label="Claim Slot">Claim Slot</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Sign-Up Modal -->
+  <div id="claimModal" class="modal-overlay" onclick="handleBackdropClick(event)">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h3 id="modalTitle">Claim Slot</h3>
+        <button class="modal-close" onclick="closeModal()">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div id="modalItemTitle" class="modal-item-title"></div>
+        <div style="margin-top: 12px;">
+          <label for="userNameInput" class="input-label">Your Name</label>
+          <input type="text" id="userNameInput" class="modal-input" placeholder="e.g. Dover, John, Blaine..." />
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" id="releaseBtn" class="btn btn-danger" style="display:none;" onclick="releaseCurrentSlot()">Release Slot</button>
+        <div style="display: flex; gap: 8px; margin-left: auto;">
+          <button type="button" class="btn btn-secondary" onclick="closeModal()">Cancel</button>
+          <button type="button" class="btn btn-primary" onclick="saveCurrentSlot()">Save & Claim</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    let activeSlotId = null;
+    let activeSlotTitle = '';
+
+    const STORAGE_KEY = 'wfffl_draft_claims_2026';
+    // Free Public Realtime Database endpoint for live multi-visitor sync
+    const DB_ENDPOINT = 'https://wfffl-2026-draft-default-rtdb.firebaseio.com/claims.json';
+
+    let currentClaims = {};
+
+    function getLocalClaims() {
+      try {
+        return JSON.parse(localStorage.getItem(STORAGE_KEY)) || {};
+      } catch (e) {
+        return {};
+      }
+    }
+
+    function saveLocalClaims(claims) {
+      try {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(claims));
+      } catch (e) {}
+    }
+
+    async function fetchCloudClaims() {
+      try {
+        const res = await fetch(DB_ENDPOINT);
+        if (res.ok) {
+          const data = await res.json();
+          if (data && typeof data === 'object') {
+            currentClaims = { ...getLocalClaims(), ...data };
+            saveLocalClaims(currentClaims);
+            renderClaims();
+            return;
+          }
+        }
+      } catch (e) {
+        console.log('Using local claims store:', e);
+      }
+      currentClaims = getLocalClaims();
+      renderClaims();
+    }
+
+    async function syncCloudClaim(slotId, name) {
+      try {
+        const url = `https://wfffl-2026-draft-default-rtdb.firebaseio.com/claims/${slotId}.json`;
+        if (name === null) {
+          await fetch(url, { method: 'DELETE' });
+        } else {
+          await fetch(url, {
+            method: 'PUT',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(name)
+          });
+        }
+      } catch (e) {
+        console.warn('Cloud sync error:', e);
+      }
+    }
+
+    function renderClaims() {
+      document.querySelectorAll('.claim-btn').forEach(btn => {
+        const slotId = btn.getAttribute('data-slot-id');
+        const defaultLabel = btn.getAttribute('data-default-label') || btn.textContent.trim();
+        if (!btn.getAttribute('data-default-label')) {
+          btn.setAttribute('data-default-label', defaultLabel);
+        }
+
+        const claimedBy = currentClaims[slotId];
+        const statusEl = document.getElementById('status-' + slotId);
+
+        if (claimedBy) {
+          btn.className = 'badge badge-ready claim-btn';
+          btn.textContent = 'Claimed: ' + claimedBy;
+          if (statusEl) {
+            statusEl.className = 'badge badge-ready';
+            statusEl.textContent = 'Confirmed';
+          }
+        } else {
+          btn.className = 'badge badge-needed claim-btn';
+          btn.textContent = defaultLabel;
+          if (statusEl) {
+            statusEl.className = 'badge badge-needed';
+            statusEl.textContent = 'Needed';
+          }
+        }
+
+        btn.onclick = () => openModal(slotId, btn.getAttribute('data-slot-name'));
+      });
+    }
+
+    function openModal(slotId, slotName) {
+      activeSlotId = slotId;
+      activeSlotTitle = slotName;
+
+      const currentName = currentClaims[slotId] || '';
+
+      document.getElementById('modalItemTitle').textContent = slotName;
+      const input = document.getElementById('userNameInput');
+      input.value = currentName;
+
+      const releaseBtn = document.getElementById('releaseBtn');
+      if (currentName) {
+        releaseBtn.style.display = 'block';
+      } else {
+        releaseBtn.style.display = 'none';
+      }
+
+      document.getElementById('claimModal').classList.add('active');
+      setTimeout(() => input.focus(), 100);
+    }
+
+    function closeModal() {
+      document.getElementById('claimModal').classList.remove('active');
+      activeSlotId = null;
+    }
+
+    function handleBackdropClick(e) {
+      if (e.target.classList.contains('modal-overlay')) {
+        closeModal();
+      }
+    }
+
+    async function saveCurrentSlot() {
+      if (!activeSlotId) return;
+      const input = document.getElementById('userNameInput');
+      const name = input.value.trim();
+
+      if (!name) {
+        alert('Please enter your name to claim this slot.');
+        return;
+      }
+
+      const saveBtn = document.querySelector('.modal-footer .btn-primary');
+      if (saveBtn) saveBtn.textContent = 'Saving...';
+
+      currentClaims[activeSlotId] = name;
+      saveLocalClaims(currentClaims);
+      renderClaims();
+
+      await syncCloudClaim(activeSlotId, name);
+
+      if (saveBtn) saveBtn.textContent = 'Save & Claim';
+      closeModal();
+    }
+
+    async function releaseCurrentSlot() {
+      if (!activeSlotId) return;
+      
+      const releaseBtn = document.getElementById('releaseBtn');
+      if (releaseBtn) releaseBtn.textContent = 'Releasing...';
+
+      delete currentClaims[activeSlotId];
+      saveLocalClaims(currentClaims);
+      renderClaims();
+
+      await syncCloudClaim(activeSlotId, null);
+
+      if (releaseBtn) releaseBtn.textContent = 'Release Slot';
+      closeModal();
+    }
+
+    document.getElementById('userNameInput').addEventListener('keydown', function(e) {
+      if (e.key === 'Enter') {
+        saveCurrentSlot();
+      }
+    });
+
+    document.addEventListener('DOMContentLoaded', () => {
+      currentClaims = getLocalClaims();
+      renderClaims();
+      fetchCloudClaims();
+    });
+  </script>
+
 </body>
 </html>
