@@ -1,3 +1,191 @@
+
+No more older messages
+I have uploaded an HTML file to my new repository on GitHub, and I want to make the site live with an easy-to-share URL.
+
+https://github.com/benbipes/WFFFL-Draft-2026
+9:46 AM
+
+
+The easiest way to make your GitHub repository live with a clean, shareable URL is by enabling GitHub Pages, which is built right into GitHub for free.
+
+Step-by-Step Instructions
+1. Make Sure Your File is Named index.html
+For the root URL (https://benbipes.github.io/WFFFL-Draft-2026/) to load your site automatically, your main HTML file must be named index.html (all lowercase).
+If your file currently has another name (e.g., draft.html), you can rename it on GitHub by opening the file, clicking the edit icon (✏️), changing the filename to index.html, and committing changes.
+(Note: If you keep a custom filename like draft.html, your URL will be https://benbipes.github.io/WFFFL-Draft-2026/draft.html).
+2. Enable GitHub Pages
+Go to your repository settings page: https://github.com/benbipes/WFFFL-Draft-2026/settings
+In the left-hand sidebar under Code and automation, click Pages.
+Under Build and deployment 
+→
+→ Source, choose Deploy from a branch.
+Under Branch:
+Change None to main (or master, whichever primary branch your repo uses).
+Leave the folder dropdown set to /(root).
+Click Save.
+3. Access Your Live Site
+GitHub will trigger a workflow to build and deploy your site (usually takes 30–60 seconds).
+Refresh the Pages settings page after a minute. You will see a box at the top with your live URL: 
+https://benbipes.github.io/WFFFL-Draft-2026/
+https://benbipes.github.io/WFFFL-Draft-2026/
+Additional Helpful Options
+Automatic Updates: Whenever you push changes or edit files in this repo, GitHub Pages will automatically update your live site.
+Custom Domain (Optional): If you buy or own a domain name, you can scroll down on the GitHub Pages settings tab and enter it under Custom domain.
+9:46 AM
+Can you make those changes?
+9:48 AM
+
+
+Your site is already live right now!
+
+We checked your repository and verified that GitHub Pages is active and rendering your index.html file.
+
+Your Live URL:
+👉 https://benbipes.github.io/WFFFL-Draft-2026/
+
+What was verified:
+File Name: index.html is in the root of your repository.
+Status: Successfully deployed and serving the "26th Annual Fantasy Draft Party | Asheville 2026" page.
+Updates: Any future commits or edits you make to index.html will automatically update this live URL.
+9:48 AM
+Can you edit the HTML from here?
+9:50 AM
+
+
+Yes! I can edit the HTML for you directly.
+
+I have cloned your repository locally to [WFFFL-Draft-2026](file:///Users/benbipes/.gemini/antigravity/scratch/WFFFL-Draft-2026) and accessed your 
+index.html
+.
+
+How we can proceed:
+Tell me what changes you'd like to make, such as:
+Updating dates, times, locations, or schedule items.
+Modifying team/owner information, rules, or draft details.
+Changing design elements, colors, fonts, or mobile responsiveness.
+Adding new sections, images, or interactive features.
+I'll make the requested edits to index.html, verify the changes, and push them back to your GitHub repository so your live site (https://benbipes.github.io/WFFFL-Draft-2026/) updates automatically.
+TIP
+
+You can also set /Users/benbipes/.gemini/antigravity/scratch/WFFFL-Draft-2026 as your active workspace in Antigravity.
+
+What would you like to update or add to your page?
+
+9:50 AM
+The sign up and claim slot buttons need to be functional. Allow anyone to "sign up" for these and create a modal pop up that let's the user enter their name for that slot.
+
+Also, the bourbon tasting will be Thursday night after dinner. Mezcal remains with taco night on Friday.
+9:51 AM
+
+
+I have updated your HTML file with all requested changes and committed them locally!
+
+Here is a summary of the updates made to 
+index.html
+:
+
+1. Functional Sign-Up & Claim Slot Modal
+Interactive Badges: Every "Sign Up" and "Claim Slot" badge across both Gear & Darts and Open Needs & Sign-Up Sheet is now interactive.
+Modal Pop-Up: Clicking any slot opens a sleek modal pop-up displaying the slot name and an input field for the user to type their name.
+Persistence & Updates:
+Slot claims are saved locally (localStorage) so claimed items stay claimed when users return to the page.
+Claimed slots display as Claimed: [Name] in green and update the status column to Confirmed.
+Users can click a claimed slot to edit their name or release the slot.
+2. Schedule & Tasting Updates
+Thursday Night: Added 9:00 PM - 🥃 Heavyweight Bourbon Tasting after dinner (curated by Matt, paired with opening dart rounds).
+Friday Night: Updated 7:00 PM - Taco Night Fiesta & Mezcal Tasting (slow-smoked carnitas, street corn, and artisanal Mezcal flight curated by Matt). Removed the duplicate Friday night bourbon tasting.
+Spirits Roster: Updated the Spirits card header to 🥃 Bourbon & Mezcal Lineup and labeled individual spirits with Thu Bourbon or Fri Mezcal.
+Pushing the Update to GitHub
+The changes are committed to your local workspace branch (main). Because pushing to GitHub requires your account authentication credentials, run this command in your terminal from the repo folder to push the changes live:
+
+bash
+
+
+git push origin main
+Once pushed, GitHub Pages will automatically update your live site at https://benbipes.github.io/WFFFL-Draft-2026/.
+
+9:51 AM
+All mentions of Ben, Ben Dover, Dover, etc all change to Dover.
+9:53 AM
+
+
+All references to Ben, Ben Dover, and Ben / Dover across the page have been standardized to Dover!
+
+Summary of Updates:
+League Roles Key: <span class="badge badge-ben">Dover (BBQ, French Dips, Mix)</span>
+Welcome Smokehouse Feast: <span class="badge badge-ben">Dover</span>
+BoJangles & Smoked Bloody Marys: <span class="badge badge-ben">Dover</span>
+Post-Draft French Dips: <span class="badge badge-ben">Dover</span>
+Modal Input Placeholder: Updated example to e.g. Dover, John, Blaine...
+The commit has been saved to 
+index.html
+. When you are ready, run:
+
+bash
+
+
+git push origin main
+9:53 AM
+Run it.
+9:54 AM
+
+
+Because non-interactive subshell commands cannot open an interactive GitHub authentication prompt, running git push directly from the background tool returned: fatal: could not read Username for 'https://github.com'
+
+All your edits are saved and committed locally in 
+/Users/benbipes/.gemini/antigravity/scratch/WFFFL-Draft-2026/index.html
+.
+
+To push the changes live:
+Option 1: Run via your Terminal (Recommended)
+Open your Mac Terminal app and execute:
+
+bash
+
+
+cd /Users/benbipes/.gemini/antigravity/scratch/WFFFL-Draft-2026
+git push origin main
+(Your Mac will use your saved GitHub credentials or prompt you once to log in).
+
+Option 2: Paste directly on GitHub
+Alternatively, open your local 
+index.html
+, copy all text, and paste it into the GitHub web editor at: 👉 https://github.com/benbipes/WFFFL-Draft-2026/edit/main/index.html
+
+Once committed/pushed, your live site at https://benbipes.github.io/WFFFL-Draft-2026/ will update automatically!
+
+9:54 AM
+The sign up buttons still do nothing. I need them to allow visitors to enter their name.
+9:56 AM
+
+
+The live site is still showing your original index.html file because the updated file is currently saved on your local computer and hasn't been pushed to GitHub yet.
+
+I fetched the file directly from GitHub (main/index.html) and confirmed GitHub still has the initial version without the JavaScript modal code.
+
+How to update GitHub (Choose either method):
+Method A: Push from your Mac Terminal (Takes ~5 seconds)
+Open your Mac Terminal application.
+Run this command:
+bash
+
+
+cd /Users/benbipes/.gemini/antigravity/scratch/WFFFL-Draft-2026 && git push origin main
+Method B: Paste into GitHub Web Editor (Takes ~15 seconds)
+Open your updated local file: 
+index.html
+ and copy all text (Cmd + A, Cmd + C).
+Go to: https://github.com/benbipes/WFFFL-Draft-2026/edit/main/index.html
+Select all text, paste your copied code (Cmd + V), and click the green Commit changes button.
+Once pushed or committed, refresh https://benbipes.github.io/WFFFL-Draft-2026/ and all "Sign Up" and "Claim Slot" buttons will open the name entry modal!
+
+9:56 AM
+
+
+
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -24,13 +212,11 @@
       --paul-graham-color: #38bdf8;
       --bobby-color: #06b6d4;
     }
-
     * {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
     }
-
     body {
       font-family: 'Inter', sans-serif;
       background-color: var(--bg);
@@ -38,7 +224,6 @@
       line-height: 1.5;
       padding-bottom: 60px;
     }
-
     header {
       background: linear-gradient(180deg, #1e1b4b 0%, #0f172a 100%);
       border-bottom: 1px solid #334155;
@@ -47,14 +232,12 @@
       position: relative;
       overflow: hidden;
     }
-
     header::before {
       content: "";
       position: absolute;
       top: 0; left: 0; right: 0; height: 4px;
       background: linear-gradient(90deg, #ef4444, #f59e0b, #3b82f6, #8b5cf6);
     }
-
     .badge-year {
       display: inline-block;
       background: rgba(239, 68, 68, 0.15);
@@ -68,703 +251,4 @@
       border-radius: 9999px;
       margin-bottom: 12px;
     }
-
     h1 {
-      font-family: 'Teko', sans-serif;
-      font-size: clamp(2.5rem, 6vw, 4.2rem);
-      letter-spacing: 1px;
-      line-height: 1;
-      text-transform: uppercase;
-      background: linear-gradient(to right, #ffffff, #cbd5e1);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      margin-bottom: 8px;
-    }
-
-    .header-sub {
-      color: var(--text-muted);
-      font-size: 1rem;
-      max-width: 600px;
-      margin: 0 auto;
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 16px;
-      font-weight: 500;
-    }
-
-    .header-sub span {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-    }
-
-    .container {
-      max-width: 1000px;
-      margin: 0 auto;
-      padding: 0 16px;
-    }
-
-    /* Nav Tabs */
-    .nav-bar {
-      position: sticky;
-      top: 0;
-      z-index: 50;
-      background: rgba(11, 15, 25, 0.95);
-      backdrop-filter: blur(8px);
-      border-bottom: 1px solid var(--card-border);
-      padding: 10px 0;
-      margin-bottom: 24px;
-    }
-
-    .nav-inner {
-      display: flex;
-      gap: 8px;
-      overflow-x: auto;
-      padding-bottom: 4px;
-      scrollbar-width: none;
-    }
-    .nav-inner::-webkit-scrollbar { display: none; }
-
-    .nav-btn {
-      background: #1e293b;
-      color: var(--text-muted);
-      border: 1px solid transparent;
-      padding: 8px 16px;
-      border-radius: 8px;
-      font-size: 0.85rem;
-      font-weight: 600;
-      cursor: pointer;
-      white-space: nowrap;
-      text-decoration: none;
-      transition: all 0.2s;
-    }
-
-    .nav-btn:hover, .nav-btn.active {
-      background: #334155;
-      color: #fff;
-      border-color: #64748b;
-    }
-
-    /* Section Cards */
-    section {
-      margin-bottom: 36px;
-      scroll-margin-top: 70px;
-    }
-
-    .card {
-      background: var(--card-bg);
-      border: 1px solid var(--card-border);
-      border-radius: 14px;
-      padding: 20px;
-      box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3);
-    }
-
-    .card-title {
-      font-family: 'Teko', sans-serif;
-      font-size: 1.8rem;
-      letter-spacing: 0.5px;
-      margin-bottom: 16px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      color: #f1f5f9;
-      border-bottom: 1px solid var(--card-border);
-      padding-bottom: 8px;
-    }
-
-    /* Cabin Info Card */
-    .cabin-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 12px;
-    }
-
-    .info-box {
-      background: #0f172a;
-      border: 1px solid #1e293b;
-      border-radius: 10px;
-      padding: 12px 14px;
-    }
-
-    .info-label {
-      font-size: 0.75rem;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.8px;
-      color: var(--text-muted);
-      margin-bottom: 4px;
-    }
-
-    .info-val {
-      font-size: 0.95rem;
-      font-weight: 600;
-      color: #f8fafc;
-      font-family: monospace;
-    }
-
-    /* Legend */
-    .legend-wrap {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      margin-top: 12px;
-    }
-
-    .badge {
-      font-size: 0.75rem;
-      font-weight: 700;
-      padding: 4px 10px;
-      border-radius: 6px;
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-    }
-
-    .badge-ben { background: rgba(249, 115, 22, 0.15); color: #fb923c; border: 1px solid rgba(249, 115, 22, 0.3); }
-    .badge-john { background: rgba(34, 197, 94, 0.15); color: #4ade80; border: 1px solid rgba(34, 197, 94, 0.3); }
-    .badge-blaine { background: rgba(234, 179, 8, 0.15); color: #facc15; border: 1px solid rgba(234, 179, 8, 0.3); }
-    .badge-matt { background: rgba(168, 85, 247, 0.15); color: #c084fc; border: 1px solid rgba(168, 85, 247, 0.3); }
-    .badge-paul-graham { background: rgba(56, 189, 248, 0.15); color: #7dd3fc; border: 1px solid rgba(56, 189, 248, 0.3); }
-    .badge-bobby { background: rgba(6, 182, 212, 0.15); color: #22d3ee; border: 1px solid rgba(6, 182, 212, 0.3); }
-    .badge-all { background: rgba(148, 163, 184, 0.15); color: #cbd5e1; border: 1px solid rgba(148, 163, 184, 0.3); }
-    .badge-needed { background: rgba(239, 68, 68, 0.15); color: #f87171; border: 1px solid rgba(239, 68, 68, 0.3); }
-    .badge-ready { background: rgba(34, 197, 94, 0.15); color: #4ade80; border: 1px solid rgba(34, 197, 94, 0.3); }
-
-    /* Timeline / Schedule */
-    .timeline {
-      display: flex;
-      flex-direction: column;
-      gap: 14px;
-    }
-
-    .event-card {
-      background: #0f172a;
-      border: 1px solid var(--card-border);
-      border-radius: 10px;
-      padding: 14px 16px;
-      display: grid;
-      grid-template-columns: 140px 1fr auto;
-      align-items: center;
-      gap: 16px;
-      transition: transform 0.15s ease;
-    }
-
-    .event-card:hover {
-      transform: translateX(4px);
-      border-color: #334155;
-    }
-
-    .event-time {
-      font-size: 0.8rem;
-      font-weight: 600;
-      color: var(--text-muted);
-      border-right: 1px solid #1e293b;
-      padding-right: 12px;
-    }
-
-    .event-time strong {
-      display: block;
-      color: #f1f5f9;
-      font-size: 0.9rem;
-    }
-
-    .event-info h4 {
-      font-size: 1rem;
-      color: #f8fafc;
-      font-weight: 700;
-      margin-bottom: 2px;
-    }
-
-    .event-info p {
-      font-size: 0.85rem;
-      color: var(--text-muted);
-    }
-
-    /* Spirits Grid */
-    .spirits-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 12px;
-    }
-
-    .spirit-item {
-      background: #0f172a;
-      border: 1px solid #1e293b;
-      border-radius: 10px;
-      padding: 12px 14px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    .spirit-details h4 {
-      font-size: 0.95rem;
-      color: #f1f5f9;
-      font-weight: 700;
-    }
-
-    .spirit-details p {
-      font-size: 0.8rem;
-      color: var(--text-muted);
-    }
-
-    /* Interactive Table / Checklist */
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      font-size: 0.88rem;
-    }
-
-    th {
-      text-align: left;
-      padding: 10px 12px;
-      color: var(--text-muted);
-      font-size: 0.75rem;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-      border-bottom: 1px solid var(--card-border);
-    }
-
-    td {
-      padding: 12px;
-      border-bottom: 1px solid #1e293b;
-      color: #e2e8f0;
-    }
-
-    tr:last-child td { border-bottom: none; }
-
-    @media (max-width: 700px) {
-      .event-card {
-        grid-template-columns: 1fr;
-        gap: 8px;
-      }
-      .event-time {
-        border-right: none;
-        border-bottom: 1px solid #1e293b;
-        padding-bottom: 6px;
-      }
-    }
-  </style>
-</head>
-<body>
-
-  <header>
-    <div class="container">
-      <span class="badge-year">Season 26 • Asheville, NC</span>
-      <h1>Fantasy Football Draft Weekend</h1>
-      <div class="header-sub">
-        <span>📅 August 27 – 30, 2026</span>
-        <span>🎯 3-Board Dart Tournament</span>
-        <span>🏈 NC State vs Game Watch</span>
-      </div>
-    </div>
-  </header>
-
-  <div class="nav-bar">
-    <div class="container">
-      <div class="nav-inner">
-        <a href="#cabin" class="nav-btn active">🏡 Cabin Info</a>
-        <a href="#schedule" class="nav-btn">📅 Master Schedule</a>
-        <a href="#spirits" class="nav-btn">🥃 Bourbon & Mezcal</a>
-        <a href="#equipment" class="nav-btn">🎯 Gear & Darts</a>
-        <a href="#groceries" class="nav-btn">🛒 Sign-Ups</a>
-      </div>
-    </div>
-  </div>
-
-  <main class="container">
-
-    <!-- Cabin Info -->
-    <section id="cabin">
-      <div class="card">
-        <div class="card-title">
-          <span>🏡 Cabin & Access Info</span>
-          <span style="font-size: 0.9rem; font-family: 'Inter'; color: var(--text-muted);">Asheville, NC</span>
-        </div>
-        <div class="cabin-grid">
-          <div class="info-box">
-            <div class="info-label">📍 Street Address</div>
-            <div class="info-val">[ Insert Rental Address, Asheville, NC ]</div>
-          </div>
-          <div class="info-box">
-            <div class="info-label">🔑 Keypad / Lock Code</div>
-            <div class="info-val">[ Enter PIN / Code ]</div>
-          </div>
-          <div class="info-box">
-            <div class="info-label">⏰ Check-In / Out</div>
-            <div class="info-val">Thu 4:00 PM / Sun 11:00 AM</div>
-          </div>
-          <div class="info-box">
-            <div class="info-label">📶 Wi-Fi & Password</div>
-            <div class="info-val">SSID: [ Name ] | Key: [ Pass ]</div>
-          </div>
-        </div>
-
-        <div style="margin-top: 20px;">
-          <div class="info-label">🎨 League Roles & Color Key</div>
-          <div class="legend-wrap">
-            <span class="badge badge-ben">Ben / Dover (BBQ, French Dips, Mix)</span>
-            <span class="badge badge-john">John (Fri Breakfast & Street Corn)</span>
-            <span class="badge badge-blaine">Blaine (Fri Carnitas)</span>
-            <span class="badge badge-matt">Matt (Mezcal & Bourbon Lineup)</span>
-            <span class="badge badge-paul-graham">Paul & Graham (Sat BoJangles)</span>
-            <span class="badge badge-bobby">Bobby (Dart Setup #3)</span>
-            <span class="badge badge-all">All League</span>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Schedule -->
-    <section id="schedule">
-      <div class="card">
-        <div class="card-title">📅 Master Schedule & Meals</div>
-        <div class="timeline">
-
-          <!-- Thursday -->
-          <div class="event-card">
-            <div class="event-time">
-              <strong>Thursday</strong>
-              4:00 PM
-            </div>
-            <div class="event-info">
-              <h4>Cabin Check-In & Dart Calibration</h4>
-              <p>Unpack, room selection, set up all 3 tournament dart board stands.</p>
-            </div>
-            <div><span class="badge badge-all">All</span></div>
-          </div>
-
-          <div class="event-card">
-            <div class="event-time">
-              <strong>Thursday</strong>
-              7:30 PM
-            </div>
-            <div class="event-info">
-              <h4>Welcome Smokehouse Feast</h4>
-              <p>4 racks smoked ribs, 4 smoked turkey breasts, baked beans, and sausage.</p>
-            </div>
-            <div><span class="badge badge-ben">Ben / Dover</span></div>
-          </div>
-
-          <div class="event-card">
-            <div class="event-time">
-              <strong>Thursday</strong>
-              Late Night
-            </div>
-            <div class="event-info">
-              <h4>Dart Warm-Up Matches</h4>
-              <p>Opening cancellation & warm-up rounds across 3 boards.</p>
-            </div>
-            <div><span class="badge badge-all">All</span></div>
-          </div>
-
-          <!-- Friday -->
-          <div class="event-card">
-            <div class="event-time">
-              <strong>Friday</strong>
-              8:30 AM
-            </div>
-            <div class="event-info">
-              <h4>Hearty Southern Breakfast</h4>
-              <p>Scrambled eggs, biscuits & gravy, crispy bacon, and fresh fruit.</p>
-            </div>
-            <div><span class="badge badge-john">John</span></div>
-          </div>
-
-          <div class="event-card">
-            <div class="event-time">
-              <strong>Friday</strong>
-              12:30 PM
-            </div>
-            <div class="event-info">
-              <h4>Asheville Brewery & Downtown Outing</h4>
-              <p>Casual lunch, local taprooms, and exploring town.</p>
-            </div>
-            <div><span class="badge badge-needed">Optional</span></div>
-          </div>
-
-          <div class="event-card">
-            <div class="event-time">
-              <strong>Friday</strong>
-              7:00 PM
-            </div>
-            <div class="event-info">
-              <h4>Taco Night Fiesta</h4>
-              <p>Slow-smoked carnitas & grilled Mexican street corn with fresh fixings.</p>
-            </div>
-            <div style="display: flex; gap: 4px;">
-              <span class="badge badge-blaine">Blaine</span>
-              <span class="badge badge-john">John</span>
-            </div>
-          </div>
-
-          <div class="event-card">
-            <div class="event-time">
-              <strong>Friday</strong>
-              8:30 PM+
-            </div>
-            <div class="event-info">
-              <h4>🥃 Heavyweight Bourbon & Mezcal Tasting</h4>
-              <p>Full 7-bourbon + 3-mezcal tasting flight paired with late-night darts.</p>
-            </div>
-            <div><span class="badge badge-matt">Matt</span></div>
-          </div>
-
-          <!-- Saturday -->
-          <div class="event-card">
-            <div class="event-time">
-              <strong>Saturday</strong>
-              9:00 AM
-            </div>
-            <div class="event-info">
-              <h4>BoJangles & Smoked Bloody Marys</h4>
-              <p>Fresh BoJangles biscuit run + Dover Signature Smoked Bloody Mary pitchers.</p>
-            </div>
-            <div style="display: flex; gap: 4px;">
-              <span class="badge badge-paul-graham">Paul & Graham</span>
-              <span class="badge badge-ben">Ben</span>
-            </div>
-          </div>
-
-          <div class="event-card">
-            <div class="event-time">
-              <strong>Saturday</strong>
-              12:00 PM
-            </div>
-            <div class="event-info">
-              <h4>NC State Wolfpack Watch Party</h4>
-              <p>Pregame drinks, sound up on the main screen, and gameday snacks.</p>
-            </div>
-            <div><span class="badge badge-all">All</span></div>
-          </div>
-
-          <div class="event-card" style="border-left: 4px solid var(--accent-gold);">
-            <div class="event-time">
-              <strong>Saturday</strong>
-              4:00 PM
-            </div>
-            <div class="event-info">
-              <h4>🏆 26th Annual Fantasy Draft</h4>
-              <p>The main event! Draft board live, timer on the clock, championship dreams.</p>
-            </div>
-            <div><span class="badge badge-all">All</span></div>
-          </div>
-
-          <div class="event-card">
-            <div class="event-time">
-              <strong>Saturday</strong>
-              7:30 PM
-            </div>
-            <div class="event-info">
-              <h4>Post-Draft Championship French Dips</h4>
-              <p>Famous roast beef French Dips with slow-simmered au jus.</p>
-            </div>
-            <div><span class="badge badge-ben">Ben Dover</span></div>
-          </div>
-
-          <!-- Sunday -->
-          <div class="event-card">
-            <div class="event-time">
-              <strong>Sunday</strong>
-              11:00 AM
-            </div>
-            <div class="event-info">
-              <h4>Farewell Brunch & Checkout</h4>
-              <p>Leftovers, gear pack-up, dart stands breakdown, and departure.</p>
-            </div>
-            <div><span class="badge badge-all">All</span></div>
-          </div>
-
-        </div>
-      </div>
-    </section>
-
-    <!-- Spirits Flight -->
-    <section id="spirits">
-      <div class="card">
-        <div class="card-title">
-          <span>🥃 Friday Night Spirits Roster</span>
-          <span class="badge badge-matt">Curated by Matt</span>
-        </div>
-        <div class="spirits-grid">
-          <div class="spirit-item">
-            <div class="spirit-details">
-              <h4>George T. Stagg</h4>
-              <p>Buffalo Trace Antique Collection (BTAC) • Barrel Proof</p>
-            </div>
-            <span class="badge badge-ready">Locked</span>
-          </div>
-          <div class="spirit-item">
-            <div class="spirit-details">
-              <h4>Russell's Reserve 13 Year</h4>
-              <p>13-Yr Age Stated • Barrel Proof • Non-Chill Filtered</p>
-            </div>
-            <span class="badge badge-ready">Locked</span>
-          </div>
-          <div class="spirit-item">
-            <div class="spirit-details">
-              <h4>Colonel E.H. Taylor, Jr.</h4>
-              <p>Straight Kentucky Bourbon • Barrel Proof Uncut</p>
-            </div>
-            <span class="badge badge-ready">Locked</span>
-          </div>
-          <div class="spirit-item">
-            <div class="spirit-details">
-              <h4>Old Forester 1924</h4>
-              <p>10-Year Old • 100 Proof • Whiskey Row 5th Release</p>
-            </div>
-            <span class="badge badge-ready">Locked</span>
-          </div>
-          <div class="spirit-item">
-            <div class="spirit-details">
-              <h4>Elijah Craig 15 Year Single Barrel</h4>
-              <p>15-Year Age Stated Red Label Single Barrel</p>
-            </div>
-            <span class="badge badge-ready">Locked</span>
-          </div>
-          <div class="spirit-item">
-            <div class="spirit-details">
-              <h4>Willett Family Estate Single Barrel</h4>
-              <p>Purple Foil Cask Selection Single Barrel</p>
-            </div>
-            <span class="badge badge-ready">Locked</span>
-          </div>
-          <div class="spirit-item">
-            <div class="spirit-details">
-              <h4>Nashtucky 8 Year Single Barrel</h4>
-              <p>Nashville Barrel Co. • 8-Year Cask Strength</p>
-            </div>
-            <span class="badge badge-ready">Locked</span>
-          </div>
-          <div class="spirit-item">
-            <div class="spirit-details">
-              <h4>Macurichos, Gusto Histórico, Real Minero</h4>
-              <p>Artisanal Agave / Oaxacan Mezcal Flight</p>
-            </div>
-            <span class="badge badge-ready">Locked</span>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Gear & Darts -->
-    <section id="equipment">
-      <div class="card">
-        <div class="card-title">🎯 Gear, Tech & Dart Stations</div>
-        <table>
-          <thead>
-            <tr>
-              <th>Station / Item</th>
-              <th>Details</th>
-              <th>Assigned</th>
-              <th>Status</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td><strong>Dart Station #1</strong></td>
-              <td>Cabin House Dart Board & Cabinet</td>
-              <td><span class="badge badge-all">Cabin Property</span></td>
-              <td><span class="badge badge-ready">On-Site</span></td>
-            </tr>
-            <tr>
-              <td><strong>Dart Station #2</strong></td>
-              <td>Dart Board, Portable Stand & Surround</td>
-              <td><span class="badge badge-ben">Dover</span></td>
-              <td><span class="badge badge-ready">Confirmed</span></td>
-            </tr>
-            <tr>
-              <td><strong>Dart Station #3</strong></td>
-              <td>Dart Board, Portable Stand & Surround</td>
-              <td><span class="badge badge-bobby">Bobby</span></td>
-              <td><span class="badge badge-ready">Confirmed</span></td>
-            </tr>
-            <tr>
-              <td><strong>Lawn Games</strong></td>
-              <td>Cornhole Boards + Bags (Regulation Sets)</td>
-              <td><span class="badge badge-needed">Sign Up</span></td>
-              <td><span class="badge badge-needed">Needed</span></td>
-            </tr>
-            <tr>
-              <td><strong>Spirits Gear</strong></td>
-              <td>Glencairns / Glasses & Large Ice Molds</td>
-              <td><span class="badge badge-needed">Sign Up</span></td>
-              <td><span class="badge badge-needed">Needed</span></td>
-            </tr>
-            <tr>
-              <td><strong>Draft Tech</strong></td>
-              <td>HDMI Cables, Extension Cords, Display Adapter</td>
-              <td><span class="badge badge-needed">Sign Up</span></td>
-              <td><span class="badge badge-needed">Needed</span></td>
-            </tr>
-            <tr>
-              <td><strong>Outdoor Audio</strong></td>
-              <td>Waterproof Bluetooth Speaker</td>
-              <td><span class="badge badge-needed">Sign Up</span></td>
-              <td><span class="badge badge-needed">Needed</span></td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </section>
-
-    <!-- Sign-Ups -->
-    <section id="groceries">
-      <div class="card">
-        <div class="card-title">🛒 Open Needs & Sign-Up Sheet</div>
-        <table>
-          <thead>
-            <tr>
-              <th>Item / Need</th>
-              <th>Category</th>
-              <th>Target Slot</th>
-              <th>Status</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td><strong>Taco Shells, Tortillas & Toppings</strong></td>
-              <td>Food / Groceries</td>
-              <td>Friday Dinner</td>
-              <td><span class="badge badge-needed">Claim Slot</span></td>
-            </tr>
-            <tr>
-              <td><strong>Vodka & Bloody Mary Garnishes</strong></td>
-              <td>Bar / Breakfast</td>
-              <td>Saturday Morning</td>
-              <td><span class="badge badge-needed">Claim Slot</span></td>
-            </tr>
-            <tr>
-              <td><strong>Bulk Craft Beer & Seltzers</strong></td>
-              <td>Beverages</td>
-              <td>All Weekend</td>
-              <td><span class="badge badge-needed">Claim Slot</span></td>
-            </tr>
-            <tr>
-              <td><strong>Game Day Chips, Pretzels & Dips</strong></td>
-              <td>Snacks</td>
-              <td>Draft & NC State Watch</td>
-              <td><span class="badge badge-needed">Claim Slot</span></td>
-            </tr>
-            <tr>
-              <td><strong>Paper Plates, Napkins, Cutlery, Cups</strong></td>
-              <td>Supplies</td>
-              <td>Cabin Essentials</td>
-              <td><span class="badge badge-needed">Claim Slot</span></td>
-            </tr>
-            <tr>
-              <td><strong>Bottled Water & Soft Drinks</strong></td>
-              <td>Hydration</td>
-              <td>All Weekend</td>
-              <td><span class="badge badge-needed">Claim Slot</span></td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </section>
-
-  </main>
-
-</body>
-</html>
