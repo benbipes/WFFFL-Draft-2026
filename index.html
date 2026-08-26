@@ -48,18 +48,18 @@
     header {
       background: linear-gradient(180deg, #1e1b4b 0%, #0f172a 100%);
       border-bottom: 1px solid #334155;
-      padding: 40px 20px 30px;
+      padding: 20px 16px 16px;
       text-align: center;
       position: relative;
       overflow: hidden;
     }
 
     .header-logo {
-      max-width: 170px;
+      max-width: 90px;
       height: auto;
-      margin: 0 auto 16px;
+      margin: 0 auto 8px;
       display: block;
-      filter: drop-shadow(0 6px 20px rgba(0, 0, 0, 0.5));
+      filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.5));
       transition: transform 0.3s ease;
     }
 
@@ -70,7 +70,7 @@
     header::before {
       content: "";
       position: absolute;
-      top: 0; left: 0; right: 0; height: 4px;
+      top: 0; left: 0; right: 0; height: 3px;
       background: linear-gradient(90deg, #ef4444, #f59e0b, #3b82f6, #8b5cf6);
     }
 
@@ -79,36 +79,37 @@
       background: rgba(239, 68, 68, 0.15);
       border: 1px solid rgba(239, 68, 68, 0.4);
       color: #fca5a5;
-      font-size: 0.8rem;
+      font-size: 0.72rem;
       font-weight: 700;
-      letter-spacing: 1.5px;
+      letter-spacing: 1.2px;
       text-transform: uppercase;
-      padding: 4px 14px;
+      padding: 2px 10px;
       border-radius: 9999px;
-      margin-bottom: 12px;
+      margin-bottom: 6px;
     }
 
     h1 {
       font-family: 'Teko', sans-serif;
-      font-size: clamp(2.5rem, 6vw, 4.2rem);
-      letter-spacing: 1px;
-      line-height: 1;
+      font-size: clamp(1.9rem, 4.5vw, 3rem);
+      letter-spacing: 0.8px;
+      line-height: 1.05;
       text-transform: uppercase;
       background: linear-gradient(to right, #ffffff, #cbd5e1);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
-      margin-bottom: 8px;
+      margin-bottom: 4px;
     }
 
     .header-sub {
       color: var(--text-muted);
-      font-size: 1rem;
-      max-width: 600px;
+      font-size: 0.85rem;
+      max-width: 650px;
       margin: 0 auto;
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
-      gap: 16px;
+      align-items: center;
+      gap: 6px 12px;
       font-weight: 500;
     }
 
@@ -730,15 +731,94 @@
       line-height: 1.45;
     }
 
+    .table-wrap {
+      width: 100%;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      margin-top: 8px;
+    }
+
     @media (max-width: 700px) {
+      body {
+        padding-bottom: 40px;
+      }
+      .container {
+        padding: 0 12px;
+      }
+      header {
+        padding: 16px 12px 14px;
+      }
+      .header-logo {
+        max-width: 76px;
+        margin-bottom: 6px;
+      }
+      h1 {
+        font-size: 2.1rem;
+      }
+      .header-sub {
+        font-size: 0.78rem;
+        gap: 4px 8px;
+      }
+      .nav-bar {
+        padding: 6px 0;
+        margin-bottom: 16px;
+      }
+      .nav-btn {
+        padding: 6px 12px;
+        font-size: 0.78rem;
+        border-radius: 6px;
+      }
+      section {
+        margin-bottom: 24px;
+        scroll-margin-top: 60px;
+      }
+      .card {
+        padding: 14px 12px;
+        border-radius: 10px;
+      }
+      .card-title {
+        font-size: 1.4rem;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 4px;
+        margin-bottom: 12px;
+      }
+      .cabin-grid {
+        grid-template-columns: 1fr;
+        gap: 8px;
+      }
+      .intel-grid {
+        grid-template-columns: 1fr;
+        gap: 8px;
+      }
+      .rooms-grid {
+        grid-template-columns: 1fr;
+        gap: 12px;
+      }
+      .amenities-grid {
+        grid-template-columns: 1fr;
+        gap: 10px;
+      }
+      .spirits-grid {
+        grid-template-columns: 1fr;
+        gap: 8px;
+      }
       .event-card {
         grid-template-columns: 1fr;
         gap: 8px;
+        padding: 12px;
       }
       .event-time {
         border-right: none;
         border-bottom: 1px solid #1e293b;
         padding-bottom: 6px;
+      }
+      table {
+        min-width: 520px;
+      }
+      th, td {
+        padding: 8px 10px;
+        font-size: 0.82rem;
       }
     }
   </style>
@@ -1259,90 +1339,92 @@
     <section id="equipment">
       <div class="card">
         <div class="card-title">🎯 Gear, Tech & Games</div>
-        <table>
-          <thead>
-            <tr>
-              <th>Station / Item</th>
-              <th>Details</th>
-              <th>Assigned</th>
-              <th>Status</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td><strong>House Dart Setup</strong></td>
-              <td>Cabin House Dart Board & Cabinet</td>
-              <td><span class="badge badge-all">Cabin Property</span></td>
-              <td><span class="badge badge-ready">On-Site</span></td>
-            </tr>
-            <tr>
-              <td><strong>2-Story Arcade (750 sq ft)</strong></td>
-              <td>DDR, Skeeball, Foosball, Shuffleboard, Pinball & Arcade Cabinets</td>
-              <td><span class="badge badge-all">Cabin Property</span></td>
-              <td><span class="badge badge-ready">On-Site</span></td>
-            </tr>
-            <tr>
-              <td><strong>Lower Level Pool Lounge</strong></td>
-              <td>Full-Size Pool Table & Lounge Space</td>
-              <td><span class="badge badge-all">Cabin Property</span></td>
-              <td><span class="badge badge-ready">On-Site</span></td>
-            </tr>
-            <tr>
-              <td><strong>12-Seat Cinema Theatre</strong></td>
-              <td>75" 4K Screen, Tiered Cinema Seating & Theatre Audio</td>
-              <td><span class="badge badge-all">Cabin Property</span></td>
-              <td><span class="badge badge-ready">On-Site</span></td>
-            </tr>
-            <tr>
-              <td><strong>Micro-Spa & Hot Tub</strong></td>
-              <td>Cedar Barrel Sauna & Mountain View Hot Tub</td>
-              <td><span class="badge badge-all">Cabin Property</span></td>
-              <td><span class="badge badge-ready">On-Site</span></td>
-            </tr>
-            <tr>
-              <td><strong>Outdoor Pizza Oven & Grill</strong></td>
-              <td>Outdoor Pizza Oven, Propane BBQ Grill & Fire Table (Seats 16)</td>
-              <td><span class="badge badge-all">Cabin Property</span></td>
-              <td><span class="badge badge-ready">On-Site</span></td>
-            </tr>
-            <tr>
-              <td><strong>Portable Setup #1</strong></td>
-              <td>Dart Board & Stand</td>
-              <td><span class="badge badge-ben">Dover</span></td>
-              <td><span class="badge badge-ready">Confirmed</span></td>
-            </tr>
-            <tr>
-              <td><strong>Portable Setup #2</strong></td>
-              <td>Dart Board & Stand</td>
-              <td><span class="badge badge-bobby">Bobby</span></td>
-              <td><span class="badge badge-ready">Confirmed</span></td>
-            </tr>
-            <tr>
-              <td><strong>Audio & Sound</strong></td>
-              <td>Sonos Speakers & Sound System</td>
-              <td><span class="badge badge-ben">Dover</span></td>
-              <td><span class="badge badge-ready">Confirmed</span></td>
-            </tr>
-            <tr>
-              <td><strong>Lawn & Party Games</strong></td>
-              <td>Cornhole Boards, Bags & Party Games</td>
-              <td><span class="badge badge-needed claim-btn" data-slot-id="gear-lawn-games" data-slot-name="Lawn & Party Games (Cornhole & Games)" data-default-label="Sign Up">Sign Up</span></td>
-              <td><span id="status-gear-lawn-games" class="badge badge-needed">Needed</span></td>
-            </tr>
-            <tr>
-              <td><strong>Spirits Gear</strong></td>
-              <td>Glencairns / Glasses & Large Ice Molds</td>
-              <td><span class="badge badge-needed claim-btn" data-slot-id="gear-spirits-gear" data-slot-name="Spirits Gear (Glencairns & Ice Molds)" data-default-label="Sign Up">Sign Up</span></td>
-              <td><span id="status-gear-spirits-gear" class="badge badge-needed">Needed</span></td>
-            </tr>
-            <tr>
-              <td><strong>Draft Tech</strong></td>
-              <td>HDMI Cables, Extension Cords, Display Adapter</td>
-              <td><span class="badge badge-needed claim-btn" data-slot-id="gear-draft-tech" data-slot-name="Draft Tech (HDMI Cables & Display Adapters)" data-default-label="Sign Up">Sign Up</span></td>
-              <td><span id="status-gear-draft-tech" class="badge badge-needed">Needed</span></td>
-            </tr>
-          </tbody>
-        </table>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Station / Item</th>
+                <th>Details</th>
+                <th>Assigned</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>House Dart Setup</strong></td>
+                <td>Cabin House Dart Board & Cabinet</td>
+                <td><span class="badge badge-all">Cabin Property</span></td>
+                <td><span class="badge badge-ready">On-Site</span></td>
+              </tr>
+              <tr>
+                <td><strong>2-Story Arcade (750 sq ft)</strong></td>
+                <td>DDR, Skeeball, Foosball, Shuffleboard, Pinball & Arcade Cabinets</td>
+                <td><span class="badge badge-all">Cabin Property</span></td>
+                <td><span class="badge badge-ready">On-Site</span></td>
+              </tr>
+              <tr>
+                <td><strong>Lower Level Pool Lounge</strong></td>
+                <td>Full-Size Pool Table & Lounge Space</td>
+                <td><span class="badge badge-all">Cabin Property</span></td>
+                <td><span class="badge badge-ready">On-Site</span></td>
+              </tr>
+              <tr>
+                <td><strong>12-Seat Cinema Theatre</strong></td>
+                <td>75" 4K Screen, Tiered Cinema Seating & Theatre Audio</td>
+                <td><span class="badge badge-all">Cabin Property</span></td>
+                <td><span class="badge badge-ready">On-Site</span></td>
+              </tr>
+              <tr>
+                <td><strong>Micro-Spa & Hot Tub</strong></td>
+                <td>Cedar Barrel Sauna & Mountain View Hot Tub</td>
+                <td><span class="badge badge-all">Cabin Property</span></td>
+                <td><span class="badge badge-ready">On-Site</span></td>
+              </tr>
+              <tr>
+                <td><strong>Outdoor Pizza Oven & Grill</strong></td>
+                <td>Outdoor Pizza Oven, Propane BBQ Grill & Fire Table (Seats 16)</td>
+                <td><span class="badge badge-all">Cabin Property</span></td>
+                <td><span class="badge badge-ready">On-Site</span></td>
+              </tr>
+              <tr>
+                <td><strong>Portable Setup #1</strong></td>
+                <td>Dart Board & Stand</td>
+                <td><span class="badge badge-ben">Dover</span></td>
+                <td><span class="badge badge-ready">Confirmed</span></td>
+              </tr>
+              <tr>
+                <td><strong>Portable Setup #2</strong></td>
+                <td>Dart Board & Stand</td>
+                <td><span class="badge badge-bobby">Bobby</span></td>
+                <td><span class="badge badge-ready">Confirmed</span></td>
+              </tr>
+              <tr>
+                <td><strong>Audio & Sound</strong></td>
+                <td>Sonos Speakers & Sound System</td>
+                <td><span class="badge badge-ben">Dover</span></td>
+                <td><span class="badge badge-ready">Confirmed</span></td>
+              </tr>
+              <tr>
+                <td><strong>Lawn & Party Games</strong></td>
+                <td>Cornhole Boards, Bags & Party Games</td>
+                <td><span class="badge badge-needed claim-btn" data-slot-id="gear-lawn-games" data-slot-name="Lawn & Party Games (Cornhole & Games)" data-default-label="Sign Up">Sign Up</span></td>
+                <td><span id="status-gear-lawn-games" class="badge badge-needed">Needed</span></td>
+              </tr>
+              <tr>
+                <td><strong>Spirits Gear</strong></td>
+                <td>Glencairns / Glasses & Large Ice Molds</td>
+                <td><span class="badge badge-needed claim-btn" data-slot-id="gear-spirits-gear" data-slot-name="Spirits Gear (Glencairns & Ice Molds)" data-default-label="Sign Up">Sign Up</span></td>
+                <td><span id="status-gear-spirits-gear" class="badge badge-needed">Needed</span></td>
+              </tr>
+              <tr>
+                <td><strong>Draft Tech</strong></td>
+                <td>HDMI Cables, Extension Cords, Display Adapter</td>
+                <td><span class="badge badge-needed claim-btn" data-slot-id="gear-draft-tech" data-slot-name="Draft Tech (HDMI Cables & Display Adapters)" data-default-label="Sign Up">Sign Up</span></td>
+                <td><span id="status-gear-draft-tech" class="badge badge-needed">Needed</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
       </div>
     </section>
 
@@ -1382,69 +1464,71 @@
             </div>
           </div>
         </div>
-        <table>
-          <thead>
-            <tr>
-              <th>Item / Need</th>
-              <th>Category</th>
-              <th>Target Slot</th>
-              <th>Status</th>
-              <th style="width: 44px; text-align: center;"></th>
-            </tr>
-          </thead>
-          <tbody id="defaultSignupBody">
-            <tr>
-              <td><strong>Taco Shells, Tortillas & Toppings</strong></td>
-              <td>Food / Groceries</td>
-              <td>Friday Dinner</td>
-              <td><span class="badge badge-needed claim-btn" data-slot-id="grocery-taco-shells" data-slot-name="Taco Shells, Tortillas & Toppings" data-default-label="Claim Slot">Claim Slot</span></td>
-              <td style="width: 44px;"></td>
-            </tr>
-            <tr>
-              <td><strong>Vodka & Bloody Mary Garnishes</strong></td>
-              <td>Bar / Breakfast</td>
-              <td>Saturday Morning</td>
-              <td><span class="badge badge-needed claim-btn" data-slot-id="grocery-vodka-garnishes" data-slot-name="Vodka & Bloody Mary Garnishes" data-default-label="Claim Slot">Claim Slot</span></td>
-              <td style="width: 44px;"></td>
-            </tr>
-            <tr>
-              <td><strong>Bulk Craft Beer & Seltzers</strong></td>
-              <td>Beverages</td>
-              <td>All Weekend</td>
-              <td><span class="badge badge-needed claim-btn" data-slot-id="grocery-craft-beer" data-slot-name="Bulk Craft Beer & Seltzers" data-default-label="Claim Slot">Claim Slot</span></td>
-              <td style="width: 44px;"></td>
-            </tr>
-            <tr>
-              <td><strong>Game Day Chips, Pretzels & Dips</strong></td>
-              <td>Snacks</td>
-              <td>Draft & NC State Watch</td>
-              <td><span class="badge badge-needed claim-btn" data-slot-id="grocery-chips-dips" data-slot-name="Game Day Chips, Pretzels & Dips" data-default-label="Claim Slot">Claim Slot</span></td>
-              <td style="width: 44px;"></td>
-            </tr>
-            <tr>
-              <td><strong>Extra Bags of Ice</strong></td>
-              <td>Kitchen / Bar</td>
-              <td>All Weekend (Cabin maker limited)</td>
-              <td><span class="badge badge-needed claim-btn" data-slot-id="grocery-ice-bags" data-slot-name="Extra Bags of Ice" data-default-label="Claim Slot">Claim Slot</span></td>
-              <td style="width: 44px;"></td>
-            </tr>
-            <tr>
-              <td><strong>Paper Plates, Napkins, Cutlery, Cups</strong></td>
-              <td>Supplies</td>
-              <td>Cabin Essentials</td>
-              <td><span class="badge badge-needed claim-btn" data-slot-id="grocery-paper-goods" data-slot-name="Paper Plates, Napkins, Cutlery & Cups" data-default-label="Claim Slot">Claim Slot</span></td>
-              <td style="width: 44px;"></td>
-            </tr>
-            <tr>
-              <td><strong>Bottled Water & Soft Drinks</strong></td>
-              <td>Hydration</td>
-              <td>All Weekend</td>
-              <td><span class="badge badge-needed claim-btn" data-slot-id="grocery-water-soda" data-slot-name="Bottled Water & Soft Drinks" data-default-label="Claim Slot">Claim Slot</span></td>
-              <td style="width: 44px;"></td>
-            </tr>
-          </tbody>
-          <tbody id="customItemsBody"></tbody>
-        </table>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Item / Need</th>
+                <th>Category</th>
+                <th>Target Slot</th>
+                <th>Status</th>
+                <th style="width: 44px; text-align: center;"></th>
+              </tr>
+            </thead>
+            <tbody id="defaultSignupBody">
+              <tr>
+                <td><strong>Taco Shells, Tortillas & Toppings</strong></td>
+                <td>Food / Groceries</td>
+                <td>Friday Dinner</td>
+                <td><span class="badge badge-needed claim-btn" data-slot-id="grocery-taco-shells" data-slot-name="Taco Shells, Tortillas & Toppings" data-default-label="Claim Slot">Claim Slot</span></td>
+                <td style="width: 44px;"></td>
+              </tr>
+              <tr>
+                <td><strong>Vodka & Bloody Mary Garnishes</strong></td>
+                <td>Bar / Breakfast</td>
+                <td>Saturday Morning</td>
+                <td><span class="badge badge-needed claim-btn" data-slot-id="grocery-vodka-garnishes" data-slot-name="Vodka & Bloody Mary Garnishes" data-default-label="Claim Slot">Claim Slot</span></td>
+                <td style="width: 44px;"></td>
+              </tr>
+              <tr>
+                <td><strong>Bulk Craft Beer & Seltzers</strong></td>
+                <td>Beverages</td>
+                <td>All Weekend</td>
+                <td><span class="badge badge-needed claim-btn" data-slot-id="grocery-craft-beer" data-slot-name="Bulk Craft Beer & Seltzers" data-default-label="Claim Slot">Claim Slot</span></td>
+                <td style="width: 44px;"></td>
+              </tr>
+              <tr>
+                <td><strong>Game Day Chips, Pretzels & Dips</strong></td>
+                <td>Snacks</td>
+                <td>Draft & NC State Watch</td>
+                <td><span class="badge badge-needed claim-btn" data-slot-id="grocery-chips-dips" data-slot-name="Game Day Chips, Pretzels & Dips" data-default-label="Claim Slot">Claim Slot</span></td>
+                <td style="width: 44px;"></td>
+              </tr>
+              <tr>
+                <td><strong>Extra Bags of Ice</strong></td>
+                <td>Kitchen / Bar</td>
+                <td>All Weekend (Cabin maker limited)</td>
+                <td><span class="badge badge-needed claim-btn" data-slot-id="grocery-ice-bags" data-slot-name="Extra Bags of Ice" data-default-label="Claim Slot">Claim Slot</span></td>
+                <td style="width: 44px;"></td>
+              </tr>
+              <tr>
+                <td><strong>Paper Plates, Napkins, Cutlery, Cups</strong></td>
+                <td>Supplies</td>
+                <td>Cabin Essentials</td>
+                <td><span class="badge badge-needed claim-btn" data-slot-id="grocery-paper-goods" data-slot-name="Paper Plates, Napkins, Cutlery & Cups" data-default-label="Claim Slot">Claim Slot</span></td>
+                <td style="width: 44px;"></td>
+              </tr>
+              <tr>
+                <td><strong>Bottled Water & Soft Drinks</strong></td>
+                <td>Hydration</td>
+                <td>All Weekend</td>
+                <td><span class="badge badge-needed claim-btn" data-slot-id="grocery-water-soda" data-slot-name="Bottled Water & Soft Drinks" data-default-label="Claim Slot">Claim Slot</span></td>
+                <td style="width: 44px;"></td>
+              </tr>
+            </tbody>
+            <tbody id="customItemsBody"></tbody>
+          </table>
+        </div>
       </div>
     </section>
 
