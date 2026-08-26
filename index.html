@@ -1712,7 +1712,7 @@
     let activeSlotId = null;
     let activeSlotTitle = '';
 
-    const CLOUD_SYNC_URL = 'https://api.restful-api.dev/objects/ff8081819ff5b11001a0104f3b0238db';
+    const CLOUD_SYNC_URL = 'https://extendsclass.com/api/json-storage/bin/abbfecc';
     const LOCAL_CLAIMS_KEY = 'wfffl_draft_claims_2026';
     const LOCAL_CUSTOM_KEY = 'wfffl_draft_custom_items_2026';
 
@@ -1752,14 +1752,20 @@
       try {
         const res = await fetch(CLOUD_SYNC_URL + '?nocache=' + Date.now());
         if (res.ok) {
-          const resData = await res.json();
-          if (resData && resData.data) {
-            const cloudClaims = resData.data.claims || {};
-            const cloudItems = resData.data.customItems || {};
+          let resData = await res.json();
+          if (typeof resData === 'string') {
+            try { resData = JSON.parse(resData); } catch (e) {}
+          }
+          if (resData && typeof resData === 'object') {
+            const rawData = resData.data ? (typeof resData.data === 'string' ? JSON.parse(resData.data) : resData.data) : resData;
+            const cloudClaims = rawData.claims || {};
+            const cloudItems = rawData.customItems || {};
             const localClaims = getLocalClaims();
             const localItems = getLocalCustomItems();
 
             let needsPush = false;
+
+            // Merge local items that aren't yet in the cloud so no user's additions are ever lost
             Object.keys(localClaims).forEach(k => {
               if (localClaims[k] && !cloudClaims[k]) {
                 cloudClaims[k] = localClaims[k];
@@ -1779,7 +1785,7 @@
             saveLocalCustomItems(customItems);
 
             if (needsPush) {
-              pushCloudStore();
+              await pushCloudStore();
             }
 
             renderClaims();
@@ -1798,16 +1804,14 @@
 
     async function pushCloudStore() {
       try {
+        const payload = JSON.stringify({
+          claims: currentClaims,
+          customItems: customItems
+        });
         await fetch(CLOUD_SYNC_URL, {
           method: 'PUT',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            name: 'WFFFL 2026 Claims & Items',
-            data: {
-              claims: currentClaims,
-              customItems: customItems
-            }
-          })
+          body: payload
         });
       } catch (e) {
         console.warn('Cloud sync error:', e);
@@ -1907,7 +1911,7 @@
       customItems[itemId] = newItem;
       saveLocalCustomItems(customItems);
       renderCustomItems();
-      pushCloudStore();
+      await pushCloudStore();
 
       nameInput.value = '';
       document.getElementById('newItemCategory').value = '';
@@ -1945,7 +1949,7 @@
       customItems[itemId] = newItem;
       saveLocalCustomItems(customItems);
       renderCustomItems();
-      pushCloudStore();
+      await pushCloudStore();
 
       nameInput.value = '';
       document.getElementById('inlineItemCategory').value = '';
@@ -2067,7 +2071,8 @@
       renderClaims();
       renderCustomItems();
       fetchCloudStore();
-      setInterval(fetchCloudStore, 4000);
+      setInterval(fetchCloudStore, 8000);
+      window.addEventListener('focus', fetchCloudStore);
 
       // Nav scroll and click tracking
       const navLinks = document.querySelectorAll('.nav-btn');
