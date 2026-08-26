@@ -21,7 +21,13 @@
       --john-color: #22c55e;
       --blaine-color: #eab308;
       --matt-color: #a855f7;
+      --paul-color: #38bdf8;
+      --graham-color: #818cf8;
       --paul-graham-color: #38bdf8;
+      --chris-color: #f43f5e;
+      --alex-color: #10b981;
+      --xu-color: #06b6d4;
+      --dave-color: #fbbf24;
       --bobby-color: #06b6d4;
     }
 
@@ -238,7 +244,13 @@
     .badge-john { background: rgba(34, 197, 94, 0.15); color: #4ade80; border: 1px solid rgba(34, 197, 94, 0.3); }
     .badge-blaine { background: rgba(234, 179, 8, 0.15); color: #facc15; border: 1px solid rgba(234, 179, 8, 0.3); }
     .badge-matt { background: rgba(168, 85, 247, 0.15); color: #c084fc; border: 1px solid rgba(168, 85, 247, 0.3); }
+    .badge-paul { background: rgba(56, 189, 248, 0.15); color: #7dd3fc; border: 1px solid rgba(56, 189, 248, 0.3); }
+    .badge-graham { background: rgba(129, 140, 248, 0.15); color: #a5b4fc; border: 1px solid rgba(129, 140, 248, 0.3); }
     .badge-paul-graham { background: rgba(56, 189, 248, 0.15); color: #7dd3fc; border: 1px solid rgba(56, 189, 248, 0.3); }
+    .badge-chris { background: rgba(244, 63, 94, 0.15); color: #fb7185; border: 1px solid rgba(244, 63, 94, 0.3); }
+    .badge-alex { background: rgba(16, 185, 129, 0.15); color: #34d399; border: 1px solid rgba(16, 185, 129, 0.3); }
+    .badge-xu { background: rgba(6, 182, 212, 0.15); color: #22d3ee; border: 1px solid rgba(6, 182, 212, 0.3); }
+    .badge-dave { background: rgba(251, 191, 36, 0.15); color: #fde047; border: 1px solid rgba(251, 191, 36, 0.3); }
     .badge-bobby { background: rgba(6, 182, 212, 0.15); color: #22d3ee; border: 1px solid rgba(6, 182, 212, 0.3); }
     .badge-all { background: rgba(148, 163, 184, 0.15); color: #cbd5e1; border: 1px solid rgba(148, 163, 184, 0.3); }
     .badge-needed { background: rgba(239, 68, 68, 0.15); color: #f87171; border: 1px solid rgba(239, 68, 68, 0.3); }
@@ -571,6 +583,153 @@
 
     tr:last-child td { border-bottom: none; }
 
+    /* Room Designation Styles */
+    .rooms-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 16px;
+    }
+
+    .room-level-card {
+      background: #0f172a;
+      border: 1px solid var(--card-border);
+      border-radius: 12px;
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .room-level-header {
+      font-size: 0.85rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      color: var(--accent-gold);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid #1e293b;
+      padding-bottom: 8px;
+    }
+
+    .room-item {
+      background: #131d33;
+      border: 1px solid #1e293b;
+      border-radius: 8px;
+      padding: 10px 12px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+      transition: border-color 0.2s ease, transform 0.15s ease;
+    }
+
+    .room-item:hover {
+      border-color: #334155;
+      transform: translateX(2px);
+    }
+
+    .room-item-info h4 {
+      font-size: 0.92rem;
+      color: #f1f5f9;
+      font-weight: 700;
+      margin-bottom: 2px;
+    }
+
+    .room-item-info p {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+    }
+
+    /* Cabin House Intel Grid */
+    .intel-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 12px;
+      margin-top: 16px;
+    }
+
+    .intel-card {
+      background: #0f172a;
+      border: 1px solid var(--card-border);
+      border-radius: 10px;
+      padding: 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .intel-card.alert-card {
+      border-color: rgba(239, 68, 68, 0.4);
+      background: rgba(239, 68, 68, 0.06);
+    }
+
+    .intel-card-header {
+      font-size: 0.78rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      color: var(--accent-gold);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .intel-card.alert-card .intel-card-header {
+      color: #f87171;
+    }
+
+    .intel-card-body {
+      font-size: 0.88rem;
+      color: #e2e8f0;
+      line-height: 1.45;
+    }
+
+    /* Amenities Grid Styles */
+    .amenities-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 12px;
+      margin-top: 16px;
+    }
+
+    .amenity-card {
+      background: #0f172a;
+      border: 1px solid var(--card-border);
+      border-radius: 10px;
+      padding: 14px 16px;
+      display: flex;
+      gap: 14px;
+      align-items: flex-start;
+    }
+
+    .amenity-icon {
+      font-size: 1.6rem;
+      line-height: 1;
+      background: rgba(59, 130, 246, 0.1);
+      border: 1px solid rgba(59, 130, 246, 0.25);
+      border-radius: 8px;
+      padding: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .amenity-content h4 {
+      font-size: 0.95rem;
+      color: #f8fafc;
+      font-weight: 700;
+      margin-bottom: 3px;
+    }
+
+    .amenity-content p {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      line-height: 1.45;
+    }
+
     @media (max-width: 700px) {
       .event-card {
         grid-template-columns: 1fr;
@@ -589,10 +748,12 @@
   <header>
     <div class="container">
       <img src="wfffl-logo-white.png" alt="Wolfpack Fans Fantasy Football League Logo" class="header-logo" />
-      <span class="badge-year">Season 26 • Asheville, NC</span>
+      <span class="badge-year">Season 26 • Cardinal Ridge • Candler, NC</span>
       <h1>Fantasy Football Draft Weekend</h1>
       <div class="header-sub">
         <span><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: text-bottom; margin-right: 4px; display: inline-block;"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg> August 27 – 30, 2026</span>
+        <span>•</span>
+        <span>🏡 5,500 Sq Ft Mountain Lodge • 4 Private Ridgeline Acres</span>
       </div>
     </div>
   </header>
@@ -600,7 +761,8 @@
   <div class="nav-bar">
     <div class="container">
       <div class="nav-inner">
-        <a href="#cabin" class="nav-btn active">🏡 Cabin Info</a>
+        <a href="#cabin" class="nav-btn active">🏡 Cabin & Intel</a>
+        <a href="#rooms" class="nav-btn">🛏️ Room Assignments</a>
         <a href="#schedule" class="nav-btn">📅 Master Schedule</a>
         <a href="#spirits" class="nav-btn">🥃 Bourbon & Mezcal</a>
         <a href="#equipment" class="nav-btn">🎯 Gear & Games</a>
@@ -615,28 +777,247 @@
     <section id="cabin">
       <div class="card">
         <div class="card-title">
-          <span>🏡 Cabin & Access Info</span>
-          <span style="font-size: 0.9rem; font-family: 'Inter'; color: var(--text-muted);">Asheville, NC</span>
+          <span>🏡 Cardinal Ridge Cabin & Access Info</span>
+          <a href="https://maps.google.com/?q=6+Carl+Lane,+Candler,+NC+28715" target="_blank" rel="noopener noreferrer" style="font-size: 0.85rem; font-family: 'Inter', sans-serif; color: var(--accent-blue); text-decoration: none; display: inline-flex; align-items: center; gap: 4px; font-weight: 600;">
+            <span>Open in Maps 📍</span>
+          </a>
         </div>
         <div class="cabin-grid">
           <div class="info-box">
             <div class="info-label">📍 Street Address</div>
-            <div class="info-val">[ Insert Rental Address, Asheville, NC ]</div>
+            <div class="info-val" style="font-family: inherit; font-size: 0.95rem;">
+              6 Carl Lane<br>
+              <span style="color: var(--text-muted); font-size: 0.85rem;">Candler, NC 28715</span>
+            </div>
           </div>
           <div class="info-box">
-            <div class="info-label">🔑 Keypad / Lock Code</div>
-            <div class="info-val">[ Enter PIN / Code ]</div>
+            <div class="info-label">🔑 Keypad Entry Code</div>
+            <div class="info-val" style="color: var(--accent-gold); font-size: 1.25rem; letter-spacing: 2px;">3608</div>
+          </div>
+          <div class="info-box">
+            <div class="info-label">📶 Wi-Fi Network</div>
+            <div class="info-val">Arcadian Ave Guest</div>
+          </div>
+          <div class="info-box">
+            <div class="info-label">🔐 Wi-Fi Password / Access</div>
+            <div class="info-val" style="font-family: inherit; font-size: 0.9rem;">Login with email address</div>
           </div>
           <div class="info-box">
             <div class="info-label">⏰ Check-In / Out</div>
             <div class="info-val">Thu 4:00 PM / Sun 11:00 AM</div>
           </div>
-          <div class="info-box">
-            <div class="info-label">📶 Wi-Fi & Password</div>
-            <div class="info-val">SSID: [ Name ] | Key: [ Pass ]</div>
+        </div>
+
+        <!-- House Intel & Rules -->
+        <div class="intel-grid">
+          <div class="intel-card">
+            <div class="intel-card-header">🧊 Kitchen & Ice Supply</div>
+            <div class="intel-card-body">
+              <strong>Bring / buy ice!</strong> The cabin ice maker cannot keep up with our group. <em>Instacart delivers directly to the house!</em>
+            </div>
+          </div>
+          <div class="intel-card">
+            <div class="intel-card-header">📺 TV & Streaming</div>
+            <div class="intel-card-body">
+              <strong>YouTube TV is logged in</strong> and ready to stream live games, sports, and entertainment on cabin TVs.
+            </div>
+          </div>
+          <div class="intel-card">
+            <div class="intel-card-header">🚗 Parking Logistics</div>
+            <div class="intel-card-body">
+              <strong>Max 5 cars in a single line.</strong> Let's coordinate and get creative with parking & carpooling.
+            </div>
+          </div>
+          <div class="intel-card alert-card">
+            <div class="intel-card-header">⚠️ Plumbing / Septic Notice</div>
+            <div class="intel-card-body">
+              <strong>Strictly NO tampons or wipes</strong> in the toilets. Septic system will clog.
+            </div>
           </div>
         </div>
 
+        <!-- Cabin Highlights & Amenities Showcase -->
+        <div style="margin-top: 24px; padding-top: 16px; border-top: 1px solid var(--card-border);">
+          <div style="font-size: 0.85rem; font-weight: 700; color: var(--accent-gold); text-transform: uppercase; letter-spacing: 0.8px; margin-bottom: 12px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 8px;">
+            <span>✨ On-Site Cabin Amenities & Entertainment</span>
+            <span style="font-size: 0.75rem; color: var(--text-muted); text-transform: none; font-weight: 500;">5,500 Sq Ft Lodge • 8 BR / 6 BA • 4 Acres</span>
+          </div>
+
+          <div class="amenities-grid">
+            <div class="amenity-card">
+              <div class="amenity-icon">🧖‍♂️</div>
+              <div class="amenity-content">
+                <h4>Cedar Barrel Sauna & Hot Tub</h4>
+                <p>Outdoor wellness micro-spa just steps from the door with panoramic Blue Ridge mountain views.</p>
+              </div>
+            </div>
+
+            <div class="amenity-card">
+              <div class="amenity-icon">🕹️</div>
+              <div class="amenity-content">
+                <h4>2-Story Arcade & Games (750 sq ft)</h4>
+                <p>Dance Dance Revolution (DDR), Skeeball, Foosball, Shuffleboard, Darts, Pinball & Retro Arcade Cabinets.</p>
+              </div>
+            </div>
+
+            <div class="amenity-card">
+              <div class="amenity-icon">🍿</div>
+              <div class="amenity-content">
+                <h4>12-Seat Cinema & Movie Theatre</h4>
+                <p>75" 4K display with authentic tiered cinema seating and theatre carpeting.</p>
+              </div>
+            </div>
+
+            <div class="amenity-card">
+              <div class="amenity-icon">🎱</div>
+              <div class="amenity-content">
+                <h4>Lower Level Pool Lounge</h4>
+                <p>Full-size pool table, electric fireplace, and lounge seating area.</p>
+              </div>
+            </div>
+
+            <div class="amenity-card">
+              <div class="amenity-icon">🍕</div>
+              <div class="amenity-content">
+                <h4>Outdoor Pizza Oven & BBQ Deck</h4>
+                <p>2-story viewing decks, gas fire table (seats 16), outdoor pizza oven, propane BBQ grill & bonfire pit.</p>
+              </div>
+            </div>
+
+            <div class="amenity-card">
+              <div class="amenity-icon">🍽️</div>
+              <div class="amenity-content">
+                <h4>Gourmet Kitchen & Great Room</h4>
+                <p>Fully stocked chef's kitchen, dining table seating 14 + bar, gas stone fireplace, and 75" living room TV.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Room Assignments -->
+    <section id="rooms">
+      <div class="card">
+        <div class="card-title">
+          <span>🛏️ Room Designations</span>
+          <span style="font-size: 0.85rem; font-family: 'Inter', sans-serif; color: var(--text-muted); font-weight: 500;">Cabin Bedding Setup</span>
+        </div>
+
+        <div class="rooms-grid">
+          <!-- Main Level -->
+          <div class="room-level-card">
+            <div class="room-level-header">
+              <span>🏠 Main Level</span>
+              <span style="color: var(--text-muted); font-size: 0.75rem;">2 King Bedrooms</span>
+            </div>
+
+            <div class="room-item">
+              <div class="room-item-info">
+                <h4>Main Level King #1</h4>
+                <p>Private bathroom w/ full bath tub</p>
+              </div>
+              <div><span class="badge badge-john">John</span></div>
+            </div>
+
+            <div class="room-item">
+              <div class="room-item-info">
+                <h4>Main Level King #2</h4>
+                <p>Main floor King bedroom</p>
+              </div>
+              <div><span class="badge badge-paul">Paul</span></div>
+            </div>
+          </div>
+
+          <!-- Upper Level -->
+          <div class="room-level-card">
+            <div class="room-level-header">
+              <span>🌲 Upper Level</span>
+              <span style="color: var(--text-muted); font-size: 0.75rem;">2 King Bedrooms</span>
+            </div>
+
+            <div class="room-item">
+              <div class="room-item-info">
+                <h4>Upper Level King #1</h4>
+                <p>Upper floor King bedroom</p>
+              </div>
+              <div><span class="badge badge-graham">Graham</span></div>
+            </div>
+
+            <div class="room-item">
+              <div class="room-item-info">
+                <h4>Upper Level King #2</h4>
+                <p>Upper floor King bedroom</p>
+              </div>
+              <div><span class="badge badge-blaine">Blaine</span></div>
+            </div>
+          </div>
+
+          <!-- Lower Level -->
+          <div class="room-level-card">
+            <div class="room-level-header">
+              <span>⛰️ Lower Level</span>
+              <span style="color: var(--text-muted); font-size: 0.75rem;">3 King Bedrooms</span>
+            </div>
+
+            <div class="room-item">
+              <div class="room-item-info">
+                <h4>Lower Level King #1</h4>
+                <p>Lower floor King bedroom</p>
+              </div>
+              <div><span class="badge badge-chris">Chris</span></div>
+            </div>
+
+            <div class="room-item">
+              <div class="room-item-info">
+                <h4>Lower Level King #2</h4>
+                <p>Lower floor King bedroom</p>
+              </div>
+              <div><span class="badge badge-ben">Ben</span></div>
+            </div>
+
+            <div class="room-item">
+              <div class="room-item-info">
+                <h4>Lower Level King #3</h4>
+                <p>Lower floor King bedroom</p>
+              </div>
+              <div><span class="badge badge-matt">Matt</span></div>
+            </div>
+          </div>
+
+          <!-- Flexible Beds -->
+          <div class="room-level-card">
+            <div class="room-level-header">
+              <span>🎮 3-Twin Bedroom / Game Room</span>
+              <span style="color: var(--text-muted); font-size: 0.75rem;">Flexible Beds</span>
+            </div>
+
+            <div class="room-item">
+              <div class="room-item-info">
+                <h4>Twin Bed / Game Room Daybed</h4>
+                <p>3-twin bedroom or day bed in game room</p>
+              </div>
+              <div><span class="badge badge-alex">Alex</span></div>
+            </div>
+
+            <div class="room-item">
+              <div class="room-item-info">
+                <h4>Twin Bed / Game Room Daybed</h4>
+                <p>3-twin bedroom or day bed in game room</p>
+              </div>
+              <div><span class="badge badge-xu">Xu</span></div>
+            </div>
+
+            <div class="room-item">
+              <div class="room-item-info">
+                <h4>Twin Bed / Game Room Daybed</h4>
+                <p>3-twin bedroom or day bed in game room</p>
+              </div>
+              <div><span class="badge badge-dave">Dave</span></div>
+            </div>
+          </div>
+        </div>
 
       </div>
     </section>
@@ -655,7 +1036,7 @@
             </div>
             <div class="event-info">
               <h4>Cabin Arrival & Check-In</h4>
-              <p>Unpack, room selection, cabin setup, and settle in.</p>
+              <p>Unpack, find your assigned room, cabin setup, and settle in.</p>
             </div>
             <div><span class="badge badge-all">All</span></div>
           </div>
@@ -889,8 +1270,38 @@
           </thead>
           <tbody>
             <tr>
-              <td><strong>House Setup</strong></td>
+              <td><strong>House Dart Setup</strong></td>
               <td>Cabin House Dart Board & Cabinet</td>
+              <td><span class="badge badge-all">Cabin Property</span></td>
+              <td><span class="badge badge-ready">On-Site</span></td>
+            </tr>
+            <tr>
+              <td><strong>2-Story Arcade (750 sq ft)</strong></td>
+              <td>DDR, Skeeball, Foosball, Shuffleboard, Pinball & Arcade Cabinets</td>
+              <td><span class="badge badge-all">Cabin Property</span></td>
+              <td><span class="badge badge-ready">On-Site</span></td>
+            </tr>
+            <tr>
+              <td><strong>Lower Level Pool Lounge</strong></td>
+              <td>Full-Size Pool Table & Lounge Space</td>
+              <td><span class="badge badge-all">Cabin Property</span></td>
+              <td><span class="badge badge-ready">On-Site</span></td>
+            </tr>
+            <tr>
+              <td><strong>12-Seat Cinema Theatre</strong></td>
+              <td>75" 4K Screen, Tiered Cinema Seating & Theatre Audio</td>
+              <td><span class="badge badge-all">Cabin Property</span></td>
+              <td><span class="badge badge-ready">On-Site</span></td>
+            </tr>
+            <tr>
+              <td><strong>Micro-Spa & Hot Tub</strong></td>
+              <td>Cedar Barrel Sauna & Mountain View Hot Tub</td>
+              <td><span class="badge badge-all">Cabin Property</span></td>
+              <td><span class="badge badge-ready">On-Site</span></td>
+            </tr>
+            <tr>
+              <td><strong>Outdoor Pizza Oven & Grill</strong></td>
+              <td>Outdoor Pizza Oven, Propane BBQ Grill & Fire Table (Seats 16)</td>
               <td><span class="badge badge-all">Cabin Property</span></td>
               <td><span class="badge badge-ready">On-Site</span></td>
             </tr>
@@ -904,6 +1315,12 @@
               <td><strong>Portable Setup #2</strong></td>
               <td>Dart Board & Stand</td>
               <td><span class="badge badge-bobby">Bobby</span></td>
+              <td><span class="badge badge-ready">Confirmed</span></td>
+            </tr>
+            <tr>
+              <td><strong>Audio & Sound</strong></td>
+              <td>Sonos Speakers & Sound System</td>
+              <td><span class="badge badge-ben">Dover</span></td>
               <td><span class="badge badge-ready">Confirmed</span></td>
             </tr>
             <tr>
@@ -923,12 +1340,6 @@
               <td>HDMI Cables, Extension Cords, Display Adapter</td>
               <td><span class="badge badge-needed claim-btn" data-slot-id="gear-draft-tech" data-slot-name="Draft Tech (HDMI Cables & Display Adapters)" data-default-label="Sign Up">Sign Up</span></td>
               <td><span id="status-gear-draft-tech" class="badge badge-needed">Needed</span></td>
-            </tr>
-            <tr>
-              <td><strong>Audio & Sound</strong></td>
-              <td>Sonos Speakers & Sound System</td>
-              <td><span class="badge badge-ben">Dover</span></td>
-              <td><span class="badge badge-ready">Confirmed</span></td>
             </tr>
           </tbody>
         </table>
@@ -1008,6 +1419,13 @@
               <td>Snacks</td>
               <td>Draft & NC State Watch</td>
               <td><span class="badge badge-needed claim-btn" data-slot-id="grocery-chips-dips" data-slot-name="Game Day Chips, Pretzels & Dips" data-default-label="Claim Slot">Claim Slot</span></td>
+              <td style="width: 44px;"></td>
+            </tr>
+            <tr>
+              <td><strong>Extra Bags of Ice</strong></td>
+              <td>Kitchen / Bar</td>
+              <td>All Weekend (Cabin maker limited)</td>
+              <td><span class="badge badge-needed claim-btn" data-slot-id="grocery-ice-bags" data-slot-name="Extra Bags of Ice" data-default-label="Claim Slot">Claim Slot</span></td>
               <td style="width: 44px;"></td>
             </tr>
             <tr>
@@ -1556,6 +1974,31 @@
       renderCustomItems();
       fetchCloudStore();
       setInterval(fetchCloudStore, 4000);
+
+      // Nav scroll and click tracking
+      const navLinks = document.querySelectorAll('.nav-btn');
+      navLinks.forEach(link => {
+        link.addEventListener('click', function() {
+          navLinks.forEach(l => l.classList.remove('active'));
+          this.classList.add('active');
+        });
+      });
+
+      const sections = document.querySelectorAll('section[id]');
+      window.addEventListener('scroll', () => {
+        let current = '';
+        sections.forEach(sec => {
+          const sectionTop = sec.offsetTop - 120;
+          if (window.scrollY >= sectionTop) {
+            current = sec.getAttribute('id');
+          }
+        });
+        if (current) {
+          navLinks.forEach(link => {
+            link.classList.toggle('active', link.getAttribute('href') === '#' + current);
+          });
+        }
+      }, { passive: true });
     });
   </script>
 
